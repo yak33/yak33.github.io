@@ -2,7 +2,7 @@
 <search>
   <entry>
     <title>在人际交往中你悟出过什么道理？</title>
-    <url>/2020/ck7g768hr000oi65rejugbth7/</url>
+    <url>/2020/ck7gaxofc000niu5rbiub5649/</url>
     <content><![CDATA[<p>1、与陌生人交谈，只说百分之30，和熟人交谈，只说百分之50，和家人交谈，只说百分之70。永远不要太过坦诚，对别人绝对的坦诚，就是对自己绝对的伤害。</p>
 <p>2、人们会真心祝福生病的人早日康复，但不一定会衷心祝愿中彩票的人过得开心。人性如此，你可以过得很好，但要让别人看到你背后的不如意。比如，你升职了，但你要说工作难度升级，自己应付不来随时会被炒鱿鱼；你买房了，但你要说每个月都有巨额房贷，衣服都买不了了。</p>
 <p>3、有很多的心里话，都以玩笑话的形式说出。有很多真的玩笑，却经常被人当真。</p>
@@ -72,7 +72,7 @@
   </entry>
   <entry>
     <title>SpringBoot完美整合RabbitMq（三）一看就懂一写就会的示例代码</title>
-    <url>/2020/ck7g768hk000bi65rhsgbf1x7/</url>
+    <url>/2020/ck7gaxof6000biu5r67z49vud/</url>
     <content><![CDATA[<p>现在简单介绍下rabbitMq在SpringBoot中的使用。</p>
 <a id="more"></a>
 
@@ -155,7 +155,7 @@
   </entry>
   <entry>
     <title>SpringBoot完美整合RabbitMq（二）RabbitMq等消息中间件简介</title>
-    <url>/2020/ck7g768hl000ci65rfgm5eu57/</url>
+    <url>/2020/ck7gaxof7000ciu5r3asj9293/</url>
     <content><![CDATA[<p>一、概述<br>大多应用中，可通过消息服务中间件来提升系统异步通信、扩展解耦能力<br>消息服务中两个重要概念：<br>消息代理（message broker）和目的地（destination）<br>当消息发送者发送消息以后，将由消息代理接管，消息代理保证消息传递到指定目的地。<br>消息队列主要有两种形式的目的地<br>队列（queue）：点对点消息通信（point-to-point）<br>主题（topic）：发布（publish）/订阅（subscribe）消息通信</p>
 <a id="more"></a>
 
@@ -213,7 +213,7 @@
   </entry>
   <entry>
     <title>SpringBoot完美整合RabbitMq（一）通过docker安装rabbitMq</title>
-    <url>/2020/ck7g768hg0007i65r0m5ccm9x/</url>
+    <url>/2020/ck7gaxof30008iu5raolh37qn/</url>
     <content><![CDATA[<p>自己的阿里云ECS服务器，系统是centos7，已安装了docker容器。</p>
 <a id="more"></a>
 
@@ -252,7 +252,7 @@
   </entry>
   <entry>
     <title>Mybatis Plus的主键id生成策略方式</title>
-    <url>/2020/ck7g768h70001i65r8ppd6kji/</url>
+    <url>/2020/ck7gaxoev0001iu5re3ztgexd/</url>
     <content><![CDATA[<p>目前手上的项目中用的数据库是MySQL，所有的表中主键ID都是int自增长，现在引入了几个外部的表，主键ID是用的String类型的UUID，就不能用代码生成器自动生成的默认的策略了。</p>
 <a id="more"></a>
 
@@ -362,7 +362,7 @@
   </entry>
   <entry>
     <title>macOS下妙用option按键</title>
-    <url>/2020/ck7g768ho000ii65r5fs5fbc0/</url>
+    <url>/2020/ck7gaxofb000liu5rdj4h6fja/</url>
     <content><![CDATA[<p>macOS下option键是非常重要的按键，它的特性是激活一些隐藏功能，所以经常被多数人忽视。现在总结一下option键让你意想不到的功能吧。</p>
 <a id="more"></a>
 
@@ -397,7 +397,7 @@
   </entry>
   <entry>
     <title>SpringBoot优雅的全局异常处理（二）@RestControllerAdvice注解方式</title>
-    <url>/2020/ck7g768hi0008i65rcxeufn5y/</url>
+    <url>/2020/ck7gaxof20007iu5r2k9uccew/</url>
     <content><![CDATA[<p>上篇文章主要是讲的SpringBoot非web项目的全局异常处理方式，现在来讲一下web注解的方式。</p>
 <a id="more"></a>
 
@@ -427,7 +427,7 @@
   </entry>
   <entry>
     <title>SpringBoot优雅的全局异常处理（一）非web项目</title>
-    <url>/2020/ck7g768he0006i65rffmn6idi/</url>
+    <url>/2020/ck7gaxof10006iu5raxlx45xo/</url>
     <content><![CDATA[<p>本篇文章主要介绍的是SpringBoot非web项目进行全局异常的处理。上个项目使用的是SpringBoot+Mybatis Plus+zbus，项目架构是：zbus分为客户端和服务端，两者通过RPC进行调用。</p>
 <a id="more"></a>
 
@@ -461,7 +461,7 @@
   </entry>
   <entry>
     <title>Spring事务失效的原因总结</title>
-    <url>/2020/ck7g768hn000gi65rdeo966pc/</url>
+    <url>/2020/ck7gaxof9000giu5r316m07ff/</url>
     <content><![CDATA[<p> Spring事务失效的 8 大原因，不见得总结全，但希望可以帮忙有需要的人。</p>
 <a id="more"></a>
 
@@ -514,7 +514,7 @@
   </entry>
   <entry>
     <title>SpringBoot 2.x 整合 redis实战</title>
-    <url>/2020/ck7g768hb0003i65r15t0bfrh/</url>
+    <url>/2020/ck7gaxoey0003iu5rd5w27koy/</url>
     <content><![CDATA[<p>这篇文章主要讲解Springboot如何整合开发Redis实现一个基本的案例。使用的是目前Springboot2.x得Lettuce版本。希望对你有帮助。</p>
 <a id="more"></a>
 
@@ -554,7 +554,7 @@
   </entry>
   <entry>
     <title>SpringBoot入门笔记</title>
-    <url>/2020/ck7g768ij0027i65r051b3qqr/</url>
+    <url>/2020/ck7gaxog80027iu5r5db3c9ci/</url>
     <content><![CDATA[<h3 id="SpringBoot入门，看这一篇文章就够了"><a href="#SpringBoot入门，看这一篇文章就够了" class="headerlink" title="SpringBoot入门，看这一篇文章就够了"></a>SpringBoot入门，看这一篇文章就够了</h3><a id="more"></a>
 
 <h1 id="一、Spring-Boot-入门"><a href="#一、Spring-Boot-入门" class="headerlink" title="一、Spring Boot 入门"></a><strong>一、</strong>Spring Boot 入门</h1><h2 id="1、Spring-Boot-简介"><a href="#1、Spring-Boot-简介" class="headerlink" title="1、Spring Boot 简介"></a>1、Spring Boot 简介</h2><blockquote>
