@@ -2,15 +2,12 @@
 <search>
   <entry>
     <title>在人际交往中你悟出过什么道理？</title>
-    <url>/2020/ck7gaxofc000niu5rbiub5649/</url>
+    <url>/2020/ck7itudk4000n0v5resk5fsko/</url>
     <content><![CDATA[<p>1、与陌生人交谈，只说百分之30，和熟人交谈，只说百分之50，和家人交谈，只说百分之70。永远不要太过坦诚，对别人绝对的坦诚，就是对自己绝对的伤害。</p>
 <p>2、人们会真心祝福生病的人早日康复，但不一定会衷心祝愿中彩票的人过得开心。人性如此，你可以过得很好，但要让别人看到你背后的不如意。比如，你升职了，但你要说工作难度升级，自己应付不来随时会被炒鱿鱼；你买房了，但你要说每个月都有巨额房贷，衣服都买不了了。</p>
 <p>3、有很多的心里话，都以玩笑话的形式说出。有很多真的玩笑，却经常被人当真。</p>
 <a id="more"></a>
 
-<p>1、与陌生人交谈，只说百分之30，和熟人交谈，只说百分之50，和家人交谈，只说百分之70。永远不要太过坦诚，对别人绝对的坦诚，就是对自己绝对的伤害。</p>
-<p>2、人们会真心祝福生病的人早日康复，但不一定会衷心祝愿中彩票的人过得开心。人性如此，你可以过得很好，但要让别人看到你背后的不如意。比如，你升职了，但你要说工作难度升级，自己应付不来随时会被炒鱿鱼；你买房了，但你要说每个月都有巨额房贷，衣服都买不了了。</p>
-<p>3、有很多的心里话，都以玩笑话的形式说出。有很多真的玩笑，却经常被人当真。</p>
 <p>4、人际交往四不曲：不说废话、不讲碎语、不做无用的事、不爱没希望的人。</p>
 <p>5、ETC全年无休，杠精永远不倒。永远不要理会杠精的任何一句话，他们总是有千万种方法抬杠，你越和他们讲道理，他们越能多方位抬杠。</p>
 <p>6、最值得深交的朋友，往往是那些平日总损你，出了事比你还上心的人。</p>
@@ -72,17 +69,16 @@
   </entry>
   <entry>
     <title>SpringBoot完美整合RabbitMq（三）一看就懂一写就会的示例代码</title>
-    <url>/2020/ck7gaxof6000biu5r67z49vud/</url>
-    <content><![CDATA[<p>现在简单介绍下rabbitMq在SpringBoot中的使用。</p>
-<a id="more"></a>
-
-<blockquote>
+    <url>/2020/ck7itudjy000b0v5r2uedb2kh/</url>
+    <content><![CDATA[<blockquote>
 <p>上面两篇文章已简单介绍了rabbitMq的安装和与其它消息中间件的区别。</p>
 <p>详见：</p>
 <p>1.<a href="https://blog.csdn.net/qq_26030541/article/details/104671383" target="_blank" rel="noopener">SpringBoot完美整合RabbitMq（一）通过docker安装rabbitMq</a></p>
 <p>2.<a href="https://blog.csdn.net/qq_26030541/article/details/104671973" target="_blank" rel="noopener">SpringBoot完美整合RabbitMq（二）RabbitMq等消息中间件简介</a></p>
 </blockquote>
 <p>现在简单介绍下rabbitMq在SpringBoot中的使用。</p>
+<a id="more"></a>
+
 <h4 id="一、引入依赖"><a href="#一、引入依赖" class="headerlink" title="一、引入依赖"></a>一、引入依赖</h4><p>SpringBoot已经默认整合了rabbitMq自动配置，只需要引入简单的依赖即可</p>
 <figure class="highlight"><table><tr><td class="code"><pre><span class="line">&lt;!-- rabbitMq --&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-boot-starter-amqp&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
 
@@ -155,25 +151,34 @@
   </entry>
   <entry>
     <title>SpringBoot完美整合RabbitMq（二）RabbitMq等消息中间件简介</title>
-    <url>/2020/ck7gaxof7000ciu5r3asj9293/</url>
-    <content><![CDATA[<p>一、概述<br>大多应用中，可通过消息服务中间件来提升系统异步通信、扩展解耦能力<br>消息服务中两个重要概念：<br>消息代理（message broker）和目的地（destination）<br>当消息发送者发送消息以后，将由消息代理接管，消息代理保证消息传递到指定目的地。<br>消息队列主要有两种形式的目的地<br>队列（queue）：点对点消息通信（point-to-point）<br>主题（topic）：发布（publish）/订阅（subscribe）消息通信</p>
-<a id="more"></a>
-
-<h3 id="一、概述"><a href="#一、概述" class="headerlink" title="一、概述"></a>一、概述</h3><ol>
+    <url>/2020/ck7itudjz000c0v5r44ykgf1i/</url>
+    <content><![CDATA[<h3 id="一、概述"><a href="#一、概述" class="headerlink" title="一、概述"></a>一、概述</h3><ol>
 <li>大多应用中，可通过消息服务中间件来提升系统异步通信、扩展解耦能力</li>
 <li>消息服务中两个重要概念：<br>消息代理（message broker）和目的地（destination）<br>当消息发送者发送消息以后，将由消息代理接管，消息代理保证消息传递到指定目<br>的地。</li>
 <li>消息队列主要有两种形式的目的地</li>
-<li>队列（queue）：点对点消息通信（point-to-point）</li>
-<li>主题（topic）：发布（publish）/订阅（subscribe）消息通信<br><img src="https://img-blog.csdnimg.cn/20200305120816159.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2MDMwNTQx,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200305120752615.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2MDMwNTQx,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></li>
-<li>点对点式：<br>– 消息发送者发送消息，消息代理将其放入一个队列中，消息接收者从队列中获取消息内容，<br>消息读取后被移出队列<br>– 消息只有唯一的发送者和接受者，但并不是说只能有一个接收者</li>
-<li>发布订阅式：<br>– 发送者（发布者）发送消息到主题，多个接收者（订阅者）监听（订阅）这个主题，那么<br>就会在消息到达时同时收到消息</li>
-<li>JMS（Java Message Service）JAVA消息服务：<br>– 基于JVM消息代理的规范。ActiveMQ、HornetMQ是JMS实现</li>
-<li>AMQP（Advanced Message Queuing Protocol）<br>– 高级消息队列协议，也是一个消息代理的规范，兼容JMS<br>– RabbitMQ是AMQP的实现</li>
+</ol>
+<a id="more"></a>
+
+<ol start="4">
+<li><p>队列（queue）：点对点消息通信（point-to-point）</p>
+</li>
+<li><p>主题（topic）：发布（publish）/订阅（subscribe）消息通信<br><img src="https://img-blog.csdnimg.cn/20200305120816159.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2MDMwNTQx,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200305120752615.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2MDMwNTQx,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+</li>
+<li><p>点对点式：<br>– 消息发送者发送消息，消息代理将其放入一个队列中，消息接收者从队列中获取消息内容，<br>消息读取后被移出队列<br>– 消息只有唯一的发送者和接受者，但并不是说只能有一个接收者</p>
+</li>
+<li><p>发布订阅式：<br>– 发送者（发布者）发送消息到主题，多个接收者（订阅者）监听（订阅）这个主题，那么<br>就会在消息到达时同时收到消息</p>
+</li>
+<li><p>JMS（Java Message Service）JAVA消息服务：<br>– 基于JVM消息代理的规范。ActiveMQ、HornetMQ是JMS实现</p>
+</li>
+<li><p>AMQP（Advanced Message Queuing Protocol）<br>– 高级消息队列协议，也是一个消息代理的规范，兼容JMS<br>– RabbitMQ是AMQP的实现</p>
+</li>
 </ol>
 <p><img src="https://img-blog.csdnimg.cn/20200305121035700.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2MDMwNTQx,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<ol start="8">
-<li>Spring支持<br>– spring-jms提供了对JMS的支持<br>– spring-rabbit提供了对AMQP的支持<br>– 需要ConnectionFactory的实现来连接消息代理<br>– 提供JmsTemplate、RabbitTemplate来发送消息<br>– @JmsListener（JMS）、@RabbitListener（AMQP）注解在方法上监听消息代理发<br>布的消息<br>– @EnableJms、@EnableRabbit开启支持</li>
-<li>Spring Boot自动配置<br>– JmsAutoConfiguration<br>– RabbitAutoConfiguration</li>
+<ol start="10">
+<li><p>Spring支持<br>– spring-jms提供了对JMS的支持<br>– spring-rabbit提供了对AMQP的支持<br>– 需要ConnectionFactory的实现来连接消息代理<br>– 提供JmsTemplate、RabbitTemplate来发送消息<br>– @JmsListener（JMS）、@RabbitListener（AMQP）注解在方法上监听消息代理发<br>布的消息<br>– @EnableJms、@EnableRabbit开启支持</p>
+</li>
+<li><p>Spring Boot自动配置<br>– JmsAutoConfiguration<br>– RabbitAutoConfiguration</p>
+</li>
 </ol>
 <h3 id="二、RabbitMQ简介"><a href="#二、RabbitMQ简介" class="headerlink" title="二、RabbitMQ简介"></a>二、RabbitMQ简介</h3><p>RabbitMQ简介：<br>RabbitMQ是一个由erlang开发的AMQP(Advanved Message Queue Protocol)的开源实现。</p>
 <p>核心概念<br><strong>Message</strong><br>消息，消息是不具名的，它由消息头和消息体组成。消息体是不透明的，而消息头则由一系列的可选属性组<br>成，这些属性包括routing-key（路由键）、priority（相对于其他消息的优先权）、delivery-mode（指出<br>该消息可能需要持久性存储）等。</p>
@@ -213,13 +218,12 @@
   </entry>
   <entry>
     <title>SpringBoot完美整合RabbitMq（一）通过docker安装rabbitMq</title>
-    <url>/2020/ck7gaxof30008iu5raolh37qn/</url>
-    <content><![CDATA[<p>自己的阿里云ECS服务器，系统是centos7，已安装了docker容器。</p>
-<a id="more"></a>
-
-<blockquote>
+    <url>/2020/ck7itudjv00080v5r3jncflj6/</url>
+    <content><![CDATA[<blockquote>
 <p>自己的阿里云ECS服务器，系统是centos7，已安装了docker容器。</p>
 </blockquote>
+<a id="more"></a>
+
 <h3 id="一、docker上部署启动RabbitMQ"><a href="#一、docker上部署启动RabbitMQ" class="headerlink" title="一、docker上部署启动RabbitMQ"></a>一、docker上部署启动RabbitMQ</h3><ol>
 <li>查询rabbitMq镜像</li>
 </ol>
@@ -252,14 +256,13 @@
   </entry>
   <entry>
     <title>Mybatis Plus的主键id生成策略方式</title>
-    <url>/2020/ck7gaxoev0001iu5re3ztgexd/</url>
-    <content><![CDATA[<p>目前手上的项目中用的数据库是MySQL，所有的表中主键ID都是int自增长，现在引入了几个外部的表，主键ID是用的String类型的UUID，就不能用代码生成器自动生成的默认的策略了。</p>
-<a id="more"></a>
-
-<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><blockquote>
+    <url>/2020/ck7itudjg00000v5rfko823ct/</url>
+    <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><blockquote>
 <p>Mybatis Plus版本是3.3.0</p>
 </blockquote>
 <p>目前手上的项目中用的数据库是MySQL，所有的表中主键ID都是int自增长，现在引入了几个外部的表，主键ID是用的String类型的UUID，就不能用代码生成器自动生成的默认的策略了。</p>
+<a id="more"></a>
+
 <ol>
 <li>原来的表中的id（mp的代码生成器默认），如：</li>
 </ol>
@@ -362,13 +365,12 @@
   </entry>
   <entry>
     <title>macOS下妙用option按键</title>
-    <url>/2020/ck7gaxofb000liu5rdj4h6fja/</url>
-    <content><![CDATA[<p>macOS下option键是非常重要的按键，它的特性是激活一些隐藏功能，所以经常被多数人忽视。现在总结一下option键让你意想不到的功能吧。</p>
-<a id="more"></a>
-
-<h3 id="macOS下妙用option按键"><a href="#macOS下妙用option按键" class="headerlink" title="macOS下妙用option按键"></a>macOS下妙用option按键</h3><blockquote>
+    <url>/2020/ck7itudk3000l0v5r90up6tmv/</url>
+    <content><![CDATA[<h3 id="macOS下妙用option按键"><a href="#macOS下妙用option按键" class="headerlink" title="macOS下妙用option按键"></a>macOS下妙用option按键</h3><blockquote>
 <p>macOS下option键是非常重要的按键，它的特性是激活一些隐藏功能，所以经常被多数人忽视。现在总结一下option键让你意想不到的功能吧。</p>
 </blockquote>
+<a id="more"></a>
+
 <h4 id="一、最大化窗口"><a href="#一、最大化窗口" class="headerlink" title="一、最大化窗口"></a>一、最大化窗口</h4><p>mac左上角三个按钮默认为关闭 最小化和全屏，但大多数时候，我们最要的是最大化窗口，而非全屏。这个时候，按住option键，你会发现全屏按键变为 + 号了，点击试一下，窗口最大化了，真香。。。</p>
 <h4 id="二、快速输入特殊字符"><a href="#二、快速输入特殊字符" class="headerlink" title="二、快速输入特殊字符"></a>二、快速输入特殊字符</h4><p>遇到特殊字符怎么办，一般都在菜单栏的点击输入法，再选择 显示表情与符号 再去选择特殊字符。其实使用option能帮你快速输入特殊字符。</p>
 <p>例如：</p>
@@ -397,14 +399,13 @@
   </entry>
   <entry>
     <title>SpringBoot优雅的全局异常处理（二）@RestControllerAdvice注解方式</title>
-    <url>/2020/ck7gaxof20007iu5r2k9uccew/</url>
-    <content><![CDATA[<p>上篇文章主要是讲的SpringBoot非web项目的全局异常处理方式，现在来讲一下web注解的方式。</p>
-<a id="more"></a>
-
-<h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><blockquote>
+    <url>/2020/ck7itudju00070v5rbpix242l/</url>
+    <content><![CDATA[<h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><blockquote>
 <p>SpringBoot版本：2.1.9.RELEASE<br>Mybatis Plus版本：3.3.0</p>
 </blockquote>
 <p>上篇文章主要是讲的SpringBoot非web项目的全局异常处理方式，现在来讲一下web注解的方式。</p>
+<a id="more"></a>
+
 <p>一、新建自定义异常处理类GlobalExceptionHandler。</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.junya.util.exception;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.junya.util.result.ResponseMessage;</span><br><span class="line"><span class="keyword">import</span> lombok.extern.slf4j.Slf4j;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.ExceptionHandler;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RestControllerAdvice;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletRequest;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@program</span> sweet-dream</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@description</span>: 自定义全局异常处理类</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span>: zhangchao</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span>: 2020/02/26 22:05</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@since</span>: 1.0.0</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Slf</span>4j</span><br><span class="line"><span class="meta">@RestControllerAdvice</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GlobalExceptionHandler</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 全局异常拦截处理</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> request</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> e</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@ExceptionHandler</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ResponseMessage <span class="title">exceptionHandler</span><span class="params">(HttpServletRequest request, Exception e)</span></span>&#123;</span><br><span class="line">        String requestUrl = request.getRequestURL().toString();<span class="comment">//得到请求的URL地址</span></span><br><span class="line">        String queryString = request.getQueryString();<span class="comment">//得到请求的URL地址中附带的参数</span></span><br><span class="line">        String remoteAddr = request.getRemoteAddr();<span class="comment">//得到来访者的IP地址</span></span><br><span class="line">        String method = request.getMethod();<span class="comment">//得到请求URL地址时使用的方法</span></span><br><span class="line">        <span class="comment">//异常堆栈信息放入日志中</span></span><br><span class="line">        String api = requestUrl.replaceFirst(<span class="string">"[\\s\\S]*\\d(.+)"</span>,<span class="string">"$1"</span>);</span><br><span class="line">        ExceptionUtil.getFullStackTrace(e,api);</span><br><span class="line">        ResponseMessage responseMessage = <span class="keyword">new</span> ResponseMessage();</span><br><span class="line">        String eStr = e.toString();</span><br><span class="line">        <span class="keyword">for</span> (GlobalErrorCodeEnum global : GlobalErrorCodeEnum.values())&#123;</span><br><span class="line">            <span class="keyword">if</span> (eStr.toUpperCase().contains(global.toString().replaceAll(<span class="string">"_"</span>,<span class="string">""</span>)))&#123;</span><br><span class="line">                responseMessage.setCode(global.getCode());</span><br><span class="line">                responseMessage.setMsg(global.getMsg());</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (eStr.contains(<span class="string">"GlobalException"</span>))&#123;</span><br><span class="line">            <span class="keyword">for</span> (GlobalErrorCodeEnum statusCodeEnum : GlobalErrorCodeEnum.values())&#123;</span><br><span class="line">                <span class="keyword">if</span> (eStr.contains(statusCodeEnum.getMsg()))&#123;</span><br><span class="line">                    <span class="keyword">if</span> (eStr.contains(<span class="string">"Data too long for column"</span>))&#123;</span><br><span class="line">                        String field = eStr.replaceAll(<span class="string">"[\\s\\S]+Data too long for column '(.+)' at[\\s\\S]+"</span>,<span class="string">"$1"</span>);</span><br><span class="line">                        responseMessage.setCode(statusCodeEnum.getCode());</span><br><span class="line">                        responseMessage.setMsg(statusCodeEnum.getMsg()+<span class="string">"，字段长度超过限制："</span>+field);</span><br><span class="line">                        <span class="keyword">break</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">if</span> (eStr.contains(<span class="string">"Unknown column"</span>))&#123;</span><br><span class="line">                        String field = eStr.replaceAll(<span class="string">"[\\s\\S]+Unknown column '(.+)' in[\\s\\S]+"</span>,<span class="string">"$1"</span>);</span><br><span class="line">                        responseMessage.setCode(statusCodeEnum.getCode());</span><br><span class="line">                        responseMessage.setMsg(statusCodeEnum.getMsg()+<span class="string">"，未知的字段："</span>+field);</span><br><span class="line">                        <span class="keyword">break</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">if</span> (eStr.contains(<span class="string">"doesn't have a default value"</span>))&#123;</span><br><span class="line">                        String field = eStr.replaceAll(<span class="string">"[\\s\\S]+Field '(.+)' doesn't have a default value[\\s\\S]+"</span>,<span class="string">"$1"</span>);</span><br><span class="line">                        responseMessage.setCode(statusCodeEnum.getCode());</span><br><span class="line">                        responseMessage.setMsg(statusCodeEnum.getMsg()+<span class="string">"，此字段必须有值："</span>+field);</span><br><span class="line">                        <span class="keyword">break</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                    responseMessage.setCode(statusCodeEnum.getCode());</span><br><span class="line">                    responseMessage.setMsg(statusCodeEnum.getMsg());</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (<span class="string">""</span>.equals(responseMessage.getCode()) || <span class="string">""</span>.equals(responseMessage.getMsg()))&#123;</span><br><span class="line">            responseMessage.setCode(GlobalErrorCodeEnum.UNKNOWN_EXCEPTION.getCode());</span><br><span class="line">            responseMessage.setMsg(GlobalErrorCodeEnum.UNKNOWN_EXCEPTION.getMsg());</span><br><span class="line">        &#125;</span><br><span class="line">        responseMessage.setData(<span class="string">"&#123;请求PATH:"</span>+api+<span class="string">"，请求参数:"</span>+queryString+<span class="string">"，来访者IP:"</span>+remoteAddr+<span class="string">"，请求方法类型:"</span>+method+<span class="string">"&#125;"</span>);</span><br><span class="line">        <span class="keyword">return</span> responseMessage;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>二、 自定义异常类，继承RuntimeException。</p>
@@ -427,14 +428,13 @@
   </entry>
   <entry>
     <title>SpringBoot优雅的全局异常处理（一）非web项目</title>
-    <url>/2020/ck7gaxof10006iu5raxlx45xo/</url>
-    <content><![CDATA[<p>本篇文章主要介绍的是SpringBoot非web项目进行全局异常的处理。上个项目使用的是SpringBoot+Mybatis Plus+zbus，项目架构是：zbus分为客户端和服务端，两者通过RPC进行调用。</p>
-<a id="more"></a>
-
-<h5 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h5><blockquote>
+    <url>/2020/ck7itudjs00060v5rbu8v1ff5/</url>
+    <content><![CDATA[<h5 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h5><blockquote>
 <p>本篇文章主要介绍的是SpringBoot非web项目进行全局异常的处理。<br>SpringBoot版本：2.1.9.RELEASE<br>Mybatis Plus版本：3.3.0</p>
 </blockquote>
 <p>上个项目使用的是SpringBoot+Mybatis Plus+zbus，项目架构是：zbus分为客户端和服务端，两者通过RPC进行调用。</p>
+<a id="more"></a>
+
 <p><strong>主要工作：通过Spring AOP处理、捕获异常，并将异常信息记录到日志中。</strong></p>
 <p>一. 先看我的pom文件，之所以将Spring换为SpringBoot就是看中了它的自动配置功能，能省略很多配置代码，简化开发：</p>
 <figure class="highlight"><table><tr><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">     &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">     &lt;artifactId&gt;spring-boot-starter&lt;/artifactId&gt;</span><br><span class="line"> &lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
@@ -461,7 +461,7 @@
   </entry>
   <entry>
     <title>Spring事务失效的原因总结</title>
-    <url>/2020/ck7gaxof9000giu5r316m07ff/</url>
+    <url>/2020/ck7itudk1000g0v5r1rczhust/</url>
     <content><![CDATA[<p> Spring事务失效的 8 大原因，不见得总结全，但希望可以帮忙有需要的人。</p>
 <a id="more"></a>
 
@@ -514,7 +514,7 @@
   </entry>
   <entry>
     <title>SpringBoot 2.x 整合 redis实战</title>
-    <url>/2020/ck7gaxoey0003iu5rd5w27koy/</url>
+    <url>/2020/ck7itudjo00020v5r0tm1etop/</url>
     <content><![CDATA[<p>这篇文章主要讲解Springboot如何整合开发Redis实现一个基本的案例。使用的是目前Springboot2.x得Lettuce版本。希望对你有帮助。</p>
 <a id="more"></a>
 
@@ -554,7 +554,7 @@
   </entry>
   <entry>
     <title>SpringBoot入门笔记</title>
-    <url>/2020/ck7gaxog80027iu5r5db3c9ci/</url>
+    <url>/2020/ck7itudl400270v5r6vupft4j/</url>
     <content><![CDATA[<h3 id="SpringBoot入门，看这一篇文章就够了"><a href="#SpringBoot入门，看这一篇文章就够了" class="headerlink" title="SpringBoot入门，看这一篇文章就够了"></a>SpringBoot入门，看这一篇文章就够了</h3><a id="more"></a>
 
 <h1 id="一、Spring-Boot-入门"><a href="#一、Spring-Boot-入门" class="headerlink" title="一、Spring Boot 入门"></a><strong>一、</strong>Spring Boot 入门</h1><h2 id="1、Spring-Boot-简介"><a href="#1、Spring-Boot-简介" class="headerlink" title="1、Spring Boot 简介"></a>1、Spring Boot 简介</h2><blockquote>
