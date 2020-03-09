@@ -2,7 +2,7 @@
 <search>
   <entry>
     <title>Linux上安装docker完美教程</title>
-    <url>/2020/ck7kive000000er5rgzf7g5u1/</url>
+    <url>/2020/ck7kob18g00003j5rae0lc8wv/</url>
     <content><![CDATA[<h6 id="一、查看内核版本-lt-Docker-要求-CentOS-系统的内核版本高于-3-10-gt"><a href="#一、查看内核版本-lt-Docker-要求-CentOS-系统的内核版本高于-3-10-gt" class="headerlink" title="一、查看内核版本 &lt;Docker 要求 CentOS 系统的内核版本高于 3.10&gt;"></a>一、查看内核版本 &lt;Docker 要求 CentOS 系统的内核版本高于 3.10&gt;</h6><pre><code>uname -r</code></pre><img src="https://gitee.com/smiletou/img4md/raw/master/images/image-20200309213731273.png" alt="image-20200309213731273" style="zoom:50%;" />
 
 <p><em>以上这是我的</em></p>
@@ -16,13 +16,20 @@
 <h6 id="七、启动Docker-设置开机启动-停止Docker"><a href="#七、启动Docker-设置开机启动-停止Docker" class="headerlink" title="七、启动Docker,设置开机启动,停止Docker"></a>七、启动Docker,设置开机启动,停止Docker</h6><p>sudo systemctl start docker<br> sudo systemctl enable docker<br> sudo systemctl stop docker</p>
 <h6 id="八、查看版本"><a href="#八、查看版本" class="headerlink" title="八、查看版本"></a>八、查看版本</h6><p>docker version</p>
 <h6 id="九、查看日志状态成功日志"><a href="#九、查看日志状态成功日志" class="headerlink" title="九、查看日志状态成功日志"></a>九、查看日志状态成功日志</h6><p>systemctl status docker.service</p>
+<p><strong><em>加速器：配置镜像加速器</em></strong></p>
+<p>针对Docker客户端版本大于 1.10.0 的用户</p>
+<p>您可以通过修改daemon配置文件/etc/docker/daemon.json来使用加速器</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">sudo mkdir -p /etc/docker</span><br><span class="line">sudo tee /etc/docker/daemon.json &lt;&lt;-<span class="string">'EOF'</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">"registry-mirrors"</span>: [<span class="string">"https://z13y6tkx.mirror.aliyuncs.com"</span>]</span><br><span class="line">&#125;</span><br><span class="line">EOF</span><br><span class="line">sudo systemctl daemon-reload</span><br><span class="line">sudo systemctl restart docker</span><br></pre></td></tr></table></figure>
+
+
+
 <p><strong><em>PS: 卸载Docker,对于旧版本没安装成功,卸掉。</em></strong></p>
 <ol>
 <li><p>查询安装过的包<br>   yum list installed | grep docker<br>   如本机安装过旧版本<br>   docker.x86_64,docker-client.x86_64,docker-common.x86_64 </p>
 </li>
 <li><p>删除安装的软件包</p>
-<pre><code>yum -y remove docker.x86_64                        
-yum -y remove docker-client.x86_64                  
+<pre><code>yum -y remove docker.x86_64
+yum -y remove docker-client.x86_64
 yum -y remove docker-common.x86_64</code></pre></li>
 </ol>
 ]]></content>
@@ -38,7 +45,7 @@ yum -y remove docker-common.x86_64</code></pre></li>
   </entry>
   <entry>
     <title>在人际交往中你悟出过什么道理？</title>
-    <url>/2020/ck7kive0n000qer5r5yzz419d/</url>
+    <url>/2020/ck7kob192000p3j5renh30vld/</url>
     <content><![CDATA[<p>1、与陌生人交谈，只说百分之30，和熟人交谈，只说百分之50，和家人交谈，只说百分之70。永远不要太过坦诚，对别人绝对的坦诚，就是对自己绝对的伤害。</p>
 <p>2、人们会真心祝福生病的人早日康复，但不一定会衷心祝愿中彩票的人过得开心。人性如此，你可以过得很好，但要让别人看到你背后的不如意。比如，你升职了，但你要说工作难度升级，自己应付不来随时会被炒鱿鱼；你买房了，但你要说每个月都有巨额房贷，衣服都买不了了。</p>
 <p>3、有很多的心里话，都以玩笑话的形式说出。有很多真的玩笑，却经常被人当真。</p>
@@ -105,7 +112,7 @@ yum -y remove docker-common.x86_64</code></pre></li>
   </entry>
   <entry>
     <title>SpringBoot完美整合RabbitMq（三）一看就懂一写就会的示例代码</title>
-    <url>/2020/ck7kive0f000cer5r9cfp4cyw/</url>
+    <url>/2020/ck7kob18x000e3j5r5vu80200/</url>
     <content><![CDATA[<blockquote>
 <p>上面两篇文章已简单介绍了rabbitMq的安装和与其它消息中间件的区别。</p>
 <p>详见：</p>
@@ -187,7 +194,7 @@ yum -y remove docker-common.x86_64</code></pre></li>
   </entry>
   <entry>
     <title>SpringBoot完美整合RabbitMq（二）RabbitMq等消息中间件简介</title>
-    <url>/2020/ck7kive0h000ger5r6k9jc9tg/</url>
+    <url>/2020/ck7kob18y000g3j5r2bz35j8d/</url>
     <content><![CDATA[<h3 id="一、概述"><a href="#一、概述" class="headerlink" title="一、概述"></a>一、概述</h3><ol>
 <li>大多应用中，可通过消息服务中间件来提升系统异步通信、扩展解耦能力</li>
 <li>消息服务中两个重要概念：<br>消息代理（message broker）和目的地（destination）<br>当消息发送者发送消息以后，将由消息代理接管，消息代理保证消息传递到指定目<br>的地。</li>
@@ -254,7 +261,7 @@ yum -y remove docker-common.x86_64</code></pre></li>
   </entry>
   <entry>
     <title>SpringBoot完美整合RabbitMq（一）通过docker安装rabbitMq</title>
-    <url>/2020/ck7kive0e000ber5r3l1hb2m5/</url>
+    <url>/2020/ck7kob18r00063j5r7q0lf43n/</url>
     <content><![CDATA[<blockquote>
 <p>自己的阿里云ECS服务器，系统是centos7，已安装了docker容器。</p>
 </blockquote>
@@ -292,7 +299,7 @@ yum -y remove docker-common.x86_64</code></pre></li>
   </entry>
   <entry>
     <title>Mybatis Plus的主键id生成策略方式</title>
-    <url>/2020/ck7kive050002er5re6j3btvq/</url>
+    <url>/2020/ck7kob18l00013j5rggjsb7l6/</url>
     <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><blockquote>
 <p>Mybatis Plus版本是3.3.0</p>
 </blockquote>
@@ -401,7 +408,7 @@ yum -y remove docker-common.x86_64</code></pre></li>
   </entry>
   <entry>
     <title>macOS下妙用option按键</title>
-    <url>/2020/ck7kive0l000ner5rb10408dy/</url>
+    <url>/2020/ck7kob18z000j3j5rf7p27wt2/</url>
     <content><![CDATA[<h3 id="macOS下妙用option按键"><a href="#macOS下妙用option按键" class="headerlink" title="macOS下妙用option按键"></a>macOS下妙用option按键</h3><blockquote>
 <p>macOS下option键是非常重要的按键，它的特性是激活一些隐藏功能，所以经常被多数人忽视。现在总结一下option键让你意想不到的功能吧。</p>
 </blockquote>
@@ -435,7 +442,7 @@ yum -y remove docker-common.x86_64</code></pre></li>
   </entry>
   <entry>
     <title>SpringBoot优雅的全局异常处理（二）@RestControllerAdvice注解方式</title>
-    <url>/2020/ck7kive0c0008er5rb9nbaijn/</url>
+    <url>/2020/ck7kob18u00093j5rcg3ueo7f/</url>
     <content><![CDATA[<h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><blockquote>
 <p>SpringBoot版本：2.1.9.RELEASE<br>Mybatis Plus版本：3.3.0</p>
 </blockquote>
@@ -464,7 +471,7 @@ yum -y remove docker-common.x86_64</code></pre></li>
   </entry>
   <entry>
     <title>SpringBoot优雅的全局异常处理（一）非web项目</title>
-    <url>/2020/ck7kive0b0007er5r088odj27/</url>
+    <url>/2020/ck7kob18o00043j5rclvi70v4/</url>
     <content><![CDATA[<h5 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h5><blockquote>
 <p>本篇文章主要介绍的是SpringBoot非web项目进行全局异常的处理。<br>SpringBoot版本：2.1.9.RELEASE<br>Mybatis Plus版本：3.3.0</p>
 </blockquote>
@@ -497,7 +504,7 @@ yum -y remove docker-common.x86_64</code></pre></li>
   </entry>
   <entry>
     <title>Spring事务失效的原因总结</title>
-    <url>/2020/ck7kive0i000ier5rhefw8e3z/</url>
+    <url>/2020/ck7kob18w000a3j5rgphndvp9/</url>
     <content><![CDATA[<p> Spring事务失效的 8 大原因，不见得总结全，但希望可以帮忙有需要的人。</p>
 <a id="more"></a>
 
@@ -550,7 +557,7 @@ yum -y remove docker-common.x86_64</code></pre></li>
   </entry>
   <entry>
     <title>SpringBoot 2.x 整合 redis实战</title>
-    <url>/2020/ck7kive090006er5r4zkxa0ab/</url>
+    <url>/2020/ck7kob18q00053j5rb45x87n7/</url>
     <content><![CDATA[<p>这篇文章主要讲解Springboot如何整合开发Redis实现一个基本的案例。使用的是目前Springboot2.x得Lettuce版本。希望对你有帮助。</p>
 <a id="more"></a>
 
@@ -590,7 +597,7 @@ yum -y remove docker-common.x86_64</code></pre></li>
   </entry>
   <entry>
     <title>SpringBoot入门笔记</title>
-    <url>/2020/ck7kive1n002ger5r56fh5q9z/</url>
+    <url>/2020/ck7kob1a8002g3j5r3je8bd1i/</url>
     <content><![CDATA[<h3 id="SpringBoot入门，看这一篇文章就够了"><a href="#SpringBoot入门，看这一篇文章就够了" class="headerlink" title="SpringBoot入门，看这一篇文章就够了"></a>SpringBoot入门，看这一篇文章就够了</h3><a id="more"></a>
 
 <h1 id="一、Spring-Boot-入门"><a href="#一、Spring-Boot-入门" class="headerlink" title="一、Spring Boot 入门"></a><strong>一、</strong>Spring Boot 入门</h1><h2 id="1、Spring-Boot-简介"><a href="#1、Spring-Boot-简介" class="headerlink" title="1、Spring Boot 简介"></a>1、Spring Boot 简介</h2><blockquote>
