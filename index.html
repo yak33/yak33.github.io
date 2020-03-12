@@ -74,6 +74,115 @@
     
     
     
+    <article id="post-MySQL判断某个字段是否包含某个字符串的方法" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/ck7og54210006n4jk29nyctmn/"
+    >MySQL判断某个字段是否包含某个字符串的方法</a
+  >
+</h2>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/ck7og54210006n4jk29nyctmn/" class="article-date">
+  <time datetime="2020-03-12T06:57:20.000Z" itemprop="datePublished">2020-03-12</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+  </div>
+
+      
+      
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">365字</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">1分钟</span>
+        </span>
+    </span>
+</div>
+
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <p>通过sql查询语句，查询某个字段中包含特定字符串</p>
+<p>例子：查询e_book表的types字段包含字符串”3”，有下面4种方式：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> e_book <span class="keyword">where</span> types <span class="keyword">like</span> <span class="string">"%3%"</span>;</span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> e_book <span class="keyword">where</span> find_in_set(<span class="string">'3'</span>, types);</span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> e_book <span class="keyword">where</span> <span class="keyword">locate</span>(<span class="string">'3'</span>, types);</span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> e_book <span class="keyword">where</span> <span class="keyword">INSTR</span>(types,<span class="string">'3'</span>);</span><br></pre></td></tr></table></figure>
+
+<p>第2、3中方式相对速度较快。</p>
+<p>例子：</p>
+<p><img src="https://gitee.com/smiletou/img4md/raw/master/images/TIM%E5%9B%BE%E7%89%8720200312152154.png" alt="TIM图片20200312152154"></p>
+<p><strong><em>用locate 是最快的，like 最慢。position一般</em></strong></p>
+<h5 id="方法一：locate-字符-字段名"><a href="#方法一：locate-字符-字段名" class="headerlink" title="方法一：locate(字符,字段名)"></a>方法一：locate(字符,字段名)</h5><p>使用locate(字符,字段名)函数，如果包含，返回&gt;0的数，否则返回0 ，</p>
+<p>它的别名是 position in<br>select * from 表名 where locate(字符,字段)<br>select * from 表名 where position(字符 in 字段);</p>
+<p>例子：判断site表中的url是否包含’http://‘子串,如果不包含则拼接在url字符串开头<br>update site set url =concat(‘http://‘,url) where locate(‘http://‘,url)=0</p>
+<p>注意mysql中字符串的拼接不能使用加号+，用concat函数。</p>
+<p><img src="https://gitee.com/smiletou/img4md/raw/master/images/TIM%E6%88%AA%E5%9B%BE20200312153451.jpg" alt="TIM截图20200312153451"></p>
+<h5 id="方法二：like"><a href="#方法二：like" class="headerlink" title="方法二：like"></a>方法二：like</h5><p>SELECT * FROM 表名 WHERE 字段名 like “%字符%”;</p>
+<h5 id="方法三：find-in-set"><a href="#方法三：find-in-set" class="headerlink" title="方法三：find_in_set()"></a>方法三：find_in_set()</h5><p>利用mysql 字符串函数 find_in_set();</p>
+<p>SELECT * FROM users WHERE find_in_set(‘字符’, 字段名);<br>mysql有很多字符串函数 find_in_set(str1,str2)函数是返回str2中str1所在的位置索引，str2必须以”,”分割开。<br>注：当str2为NO1：“3,6,13,24,33,36”，NO2：“13,33,36,39”时，判断两个数据中str2字段是否包含‘3’</p>
+<p>mysql &gt; SELECT find_in_set()(‘3’,’3,6,13,24,33,36’) as test;<br>-&gt; 1<br>mysql &gt; SELECT find_in_set()(‘3’,’13,33,36,39’) as test;<br>-&gt; 0</p>
+<h5 id="方法四：INSTR-字段-字符"><a href="#方法四：INSTR-字段-字符" class="headerlink" title="方法四：INSTR(字段,字符)"></a>方法四：INSTR(字段,字符)</h5><p>select * from 表名 where INSTR(字段,字符)</p>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MySQL/" rel="tag">MySQL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%8A%80%E6%9C%AF/" rel="tag">技术</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
     <article id="post-Linux上安装docker完美教程" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -82,7 +191,7 @@
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2020/ck7kob18g00003j5rae0lc8wv/"
+  <a class="article-title" href="/2020/ck7og53sk0000n4jkaql5avgu/"
     >Linux上安装docker完美教程</a
   >
 </h2>
@@ -93,7 +202,7 @@
 
     
     <div class="article-meta">
-      <a href="/2020/ck7kob18g00003j5rae0lc8wv/" class="article-date">
+      <a href="/2020/ck7og53sk0000n4jkaql5avgu/" class="article-date">
   <time datetime="2020-03-09T13:33:43.000Z" itemprop="datePublished">2020-03-09</time>
 </a>
       
@@ -141,7 +250,7 @@
 <p><em>以上这是我的</em></p>
 <h6 id="二、把yum包更新到最新"><a href="#二、把yum包更新到最新" class="headerlink" title="二、把yum包更新到最新"></a>二、把yum包更新到最新</h6><p>sudo yum update</p>
       
-      <a class="article-more-link" href="/2020/ck7kob18g00003j5rae0lc8wv/">阅读更多...</a>
+      <a class="article-more-link" href="/2020/ck7og53sk0000n4jkaql5avgu/">阅读更多...</a>
       
       
       <!-- reward -->
@@ -179,7 +288,7 @@
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2020/ck7kob192000p3j5renh30vld/"
+  <a class="article-title" href="/2020/ck7og543b000un4jk9gql1mnk/"
     >在人际交往中你悟出过什么道理？</a
   >
 </h2>
@@ -190,7 +299,7 @@
 
     
     <div class="article-meta">
-      <a href="/2020/ck7kob192000p3j5renh30vld/" class="article-date">
+      <a href="/2020/ck7og543b000un4jk9gql1mnk/" class="article-date">
   <time datetime="2020-03-06T12:50:53.000Z" itemprop="datePublished">2020-03-06</time>
 </a>
       
@@ -237,7 +346,7 @@
 <p>2、人们会真心祝福生病的人早日康复，但不一定会衷心祝愿中彩票的人过得开心。人性如此，你可以过得很好，但要让别人看到你背后的不如意。比如，你升职了，但你要说工作难度升级，自己应付不来随时会被炒鱿鱼；你买房了，但你要说每个月都有巨额房贷，衣服都买不了了。</p>
 <p>3、有很多的心里话，都以玩笑话的形式说出。有很多真的玩笑，却经常被人当真。</p>
       
-      <a class="article-more-link" href="/2020/ck7kob192000p3j5renh30vld/">阅读更多...</a>
+      <a class="article-more-link" href="/2020/ck7og543b000un4jk9gql1mnk/">阅读更多...</a>
       
       
       <!-- reward -->
@@ -275,7 +384,7 @@
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2020/ck7kob18x000e3j5r5vu80200/"
+  <a class="article-title" href="/2020/ck7og5437000nn4jkf8kvfsyz/"
     >SpringBoot完美整合RabbitMq（三）一看就懂一写就会的示例代码</a
   >
 </h2>
@@ -286,7 +395,7 @@
 
     
     <div class="article-meta">
-      <a href="/2020/ck7kob18x000e3j5r5vu80200/" class="article-date">
+      <a href="/2020/ck7og5437000nn4jkf8kvfsyz/" class="article-date">
   <time datetime="2020-03-05T07:00:13.000Z" itemprop="datePublished">2020-03-05</time>
 </a>
       
@@ -337,7 +446,7 @@
 </blockquote>
 <p>现在简单介绍下rabbitMq在SpringBoot中的使用。</p>
       
-      <a class="article-more-link" href="/2020/ck7kob18x000e3j5r5vu80200/">阅读更多...</a>
+      <a class="article-more-link" href="/2020/ck7og5437000nn4jkf8kvfsyz/">阅读更多...</a>
       
       
       <!-- reward -->
@@ -375,7 +484,7 @@
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2020/ck7kob18y000g3j5r2bz35j8d/"
+  <a class="article-title" href="/2020/ck7og5433000in4jkagnocukf/"
     >SpringBoot完美整合RabbitMq（二）RabbitMq等消息中间件简介</a
   >
 </h2>
@@ -386,7 +495,7 @@
 
     
     <div class="article-meta">
-      <a href="/2020/ck7kob18y000g3j5r2bz35j8d/" class="article-date">
+      <a href="/2020/ck7og5433000in4jkagnocukf/" class="article-date">
   <time datetime="2020-03-05T04:11:55.000Z" itemprop="datePublished">2020-03-05</time>
 </a>
       
@@ -435,7 +544,7 @@
 <li>消息队列主要有两种形式的目的地</li>
 </ol>
       
-      <a class="article-more-link" href="/2020/ck7kob18y000g3j5r2bz35j8d/">阅读更多...</a>
+      <a class="article-more-link" href="/2020/ck7og5433000in4jkagnocukf/">阅读更多...</a>
       
       
       <!-- reward -->
@@ -473,7 +582,7 @@
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2020/ck7kob18r00063j5r7q0lf43n/"
+  <a class="article-title" href="/2020/ck7og54230008n4jk24kv4j00/"
     >SpringBoot完美整合RabbitMq（一）通过docker安装rabbitMq</a
   >
 </h2>
@@ -484,7 +593,7 @@
 
     
     <div class="article-meta">
-      <a href="/2020/ck7kob18r00063j5r7q0lf43n/" class="article-date">
+      <a href="/2020/ck7og54230008n4jk24kv4j00/" class="article-date">
   <time datetime="2020-03-05T03:39:55.000Z" itemprop="datePublished">2020-03-05</time>
 </a>
       
@@ -531,7 +640,7 @@
 <p>自己的阿里云ECS服务器，系统是centos7，已安装了docker容器。</p>
 </blockquote>
       
-      <a class="article-more-link" href="/2020/ck7kob18r00063j5r7q0lf43n/">阅读更多...</a>
+      <a class="article-more-link" href="/2020/ck7og54230008n4jk24kv4j00/">阅读更多...</a>
       
       
       <!-- reward -->
@@ -569,7 +678,7 @@
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2020/ck7kob18l00013j5rggjsb7l6/"
+  <a class="article-title" href="/2020/ck7og54220007n4jk31bo62dp/"
     >Mybatis Plus的主键id生成策略方式</a
   >
 </h2>
@@ -580,7 +689,7 @@
 
     
     <div class="article-meta">
-      <a href="/2020/ck7kob18l00013j5rggjsb7l6/" class="article-date">
+      <a href="/2020/ck7og54220007n4jk31bo62dp/" class="article-date">
   <time datetime="2020-03-03T05:36:53.000Z" itemprop="datePublished">2020-03-03</time>
 </a>
       
@@ -628,7 +737,7 @@
 </blockquote>
 <p>目前手上的项目中用的数据库是MySQL，所有的表中主键ID都是int自增长，现在引入了几个外部的表，主键ID是用的String类型的UUID，就不能用代码生成器自动生成的默认的策略了。</p>
       
-      <a class="article-more-link" href="/2020/ck7kob18l00013j5rggjsb7l6/">阅读更多...</a>
+      <a class="article-more-link" href="/2020/ck7og54220007n4jk31bo62dp/">阅读更多...</a>
       
       
       <!-- reward -->
@@ -666,7 +775,7 @@
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2020/ck7kob18z000j3j5rf7p27wt2/"
+  <a class="article-title" href="/2020/ck7og5435000ln4jk3wpa6zpl/"
     >macOS下妙用option按键</a
   >
 </h2>
@@ -677,7 +786,7 @@
 
     
     <div class="article-meta">
-      <a href="/2020/ck7kob18z000j3j5rf7p27wt2/" class="article-date">
+      <a href="/2020/ck7og5435000ln4jk3wpa6zpl/" class="article-date">
   <time datetime="2020-03-03T05:36:53.000Z" itemprop="datePublished">2020-03-03</time>
 </a>
       
@@ -724,7 +833,7 @@
 <p>macOS下option键是非常重要的按键，它的特性是激活一些隐藏功能，所以经常被多数人忽视。现在总结一下option键让你意想不到的功能吧。</p>
 </blockquote>
       
-      <a class="article-more-link" href="/2020/ck7kob18z000j3j5rf7p27wt2/">阅读更多...</a>
+      <a class="article-more-link" href="/2020/ck7og5435000ln4jk3wpa6zpl/">阅读更多...</a>
       
       
       <!-- reward -->
@@ -762,7 +871,7 @@
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2020/ck7kob18u00093j5rcg3ueo7f/"
+  <a class="article-title" href="/2020/ck7og5439000rn4jk14k46ohj/"
     >SpringBoot优雅的全局异常处理（二）@RestControllerAdvice注解方式</a
   >
 </h2>
@@ -773,7 +882,7 @@
 
     
     <div class="article-meta">
-      <a href="/2020/ck7kob18u00093j5rcg3ueo7f/" class="article-date">
+      <a href="/2020/ck7og5439000rn4jk14k46ohj/" class="article-date">
   <time datetime="2020-03-02T05:16:26.000Z" itemprop="datePublished">2020-03-02</time>
 </a>
       
@@ -821,7 +930,7 @@
 </blockquote>
 <p>上篇文章主要是讲的SpringBoot非web项目的全局异常处理方式，现在来讲一下web注解的方式。</p>
       
-      <a class="article-more-link" href="/2020/ck7kob18u00093j5rcg3ueo7f/">阅读更多...</a>
+      <a class="article-more-link" href="/2020/ck7og5439000rn4jk14k46ohj/">阅读更多...</a>
       
       
       <!-- reward -->
@@ -859,7 +968,7 @@
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2020/ck7kob18o00043j5rclvi70v4/"
+  <a class="article-title" href="/2020/ck7og542u000bn4jkeoz1cxu1/"
     >SpringBoot优雅的全局异常处理（一）非web项目</a
   >
 </h2>
@@ -870,7 +979,7 @@
 
     
     <div class="article-meta">
-      <a href="/2020/ck7kob18o00043j5rclvi70v4/" class="article-date">
+      <a href="/2020/ck7og542u000bn4jkeoz1cxu1/" class="article-date">
   <time datetime="2020-03-02T05:00:26.000Z" itemprop="datePublished">2020-03-02</time>
 </a>
       
@@ -918,7 +1027,7 @@
 </blockquote>
 <p>上个项目使用的是SpringBoot+Mybatis Plus+zbus，项目架构是：zbus分为客户端和服务端，两者通过RPC进行调用。</p>
       
-      <a class="article-more-link" href="/2020/ck7kob18o00043j5rclvi70v4/">阅读更多...</a>
+      <a class="article-more-link" href="/2020/ck7og542u000bn4jkeoz1cxu1/">阅读更多...</a>
       
       
       <!-- reward -->
@@ -932,100 +1041,6 @@
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/" rel="tag">异常处理</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%8A%80%E6%9C%AF/" rel="tag">技术</a></li></ul>
-
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
-    <article id="post-Spring事务失效的原因总结" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/ck7kob18w000a3j5rgphndvp9/"
-    >Spring事务失效的原因总结</a
-  >
-</h2>
-  
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/ck7kob18w000a3j5rgphndvp9/" class="article-date">
-  <time datetime="2020-02-27T02:56:53.000Z" itemprop="datePublished">2020-02-27</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
-  </div>
-
-      
-      
-<div class="word_count">
-    <span class="post-time">
-        <span class="post-meta-item-icon">
-            <i class="ri-quill-pen-line"></i>
-            <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">1k字</span>
-        </span>
-    </span>
-
-    <span class="post-time">
-        &nbsp; | &nbsp;
-        <span class="post-meta-item-icon">
-            <i class="ri-book-open-line"></i>
-            <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">4分钟</span>
-        </span>
-    </span>
-</div>
-
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-
-
-      
-
-      
-      <p> Spring事务失效的 8 大原因，不见得总结全，但希望可以帮忙有需要的人。</p>
-      
-      <a class="article-more-link" href="/2020/ck7kob18w000a3j5rgphndvp9/">阅读更多...</a>
-      
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/spring/" rel="tag">spring</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/spring%E4%BA%8B%E5%8A%A1/" rel="tag">spring事务</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%8A%80%E6%9C%AF/" rel="tag">技术</a></li></ul>
 
 
     </footer>

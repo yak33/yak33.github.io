@@ -10,7 +10,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    Mybatis Plus的主键id生成策略方式 |  
+    MySQL判断某个字段是否包含某个字符串的方法 |  
   </title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   
@@ -35,7 +35,7 @@
   <div id="app">
     <main class="content">
       <section class="outer">
-  <article id="post-Mybatis Plus的主键id生成策略方式" class="article article-type-post" itemscope
+  <article id="post-MySQL判断某个字段是否包含某个字符串的方法" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
   <div class="article-inner">
@@ -43,7 +43,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  Mybatis Plus的主键id生成策略方式
+  MySQL判断某个字段是否包含某个字符串的方法
 </h1>
   
 
@@ -52,8 +52,8 @@
 
     
     <div class="article-meta">
-      <a href="/2020/ck7kob18l00013j5rggjsb7l6/" class="article-date">
-  <time datetime="2020-03-03T05:36:53.000Z" itemprop="datePublished">2020-03-03</time>
+      <a href="/2020/ck7og54210006n4jk29nyctmn/" class="article-date">
+  <time datetime="2020-03-12T06:57:20.000Z" itemprop="datePublished">2020-03-12</time>
 </a>
       
   <div class="article-category">
@@ -67,7 +67,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">445字</span>
+            <span class="post-count">365字</span>
         </span>
     </span>
 
@@ -103,101 +103,24 @@
       
 
       
-      <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><blockquote>
-<p>Mybatis Plus版本是3.3.0</p>
-</blockquote>
-<p>目前手上的项目中用的数据库是MySQL，所有的表中主键ID都是int自增长，现在引入了几个外部的表，主键ID是用的String类型的UUID，就不能用代码生成器自动生成的默认的策略了。</p>
-<a id="more"></a>
+      <p>通过sql查询语句，查询某个字段中包含特定字符串</p>
+<p>例子：查询e_book表的types字段包含字符串”3”，有下面4种方式：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> e_book <span class="keyword">where</span> types <span class="keyword">like</span> <span class="string">"%3%"</span>;</span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> e_book <span class="keyword">where</span> find_in_set(<span class="string">'3'</span>, types);</span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> e_book <span class="keyword">where</span> <span class="keyword">locate</span>(<span class="string">'3'</span>, types);</span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> e_book <span class="keyword">where</span> <span class="keyword">INSTR</span>(types,<span class="string">'3'</span>);</span><br></pre></td></tr></table></figure>
 
-<ol>
-<li>原来的表中的id（mp的代码生成器默认），如：</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;</span></span><br><span class="line"><span class="comment"> * 发票表</span></span><br><span class="line"><span class="comment"> * &lt;/p&gt;</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> zhangchao</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@since</span> 2019-09-16</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ApplyInvoices</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@TableId</span>(value = <span class="string">"ID"</span>, type = IdType.AUTO)</span><br><span class="line">    <span class="keyword">private</span> Long id;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 发票号</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@TableField</span>(<span class="string">"INVOICE_NO"</span>)</span><br><span class="line">    <span class="keyword">private</span> String invoiceNo;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">  * 发票流水号</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@TableField</span>(<span class="string">"CUSTOMS_CODE"</span>)</span><br><span class="line">    <span class="keyword">private</span> String customsCode;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li><p>查阅mp的官方文档@TableId注解，可知有如下几种方式：</p>
-<p><strong>@TableId</strong></p>
-<ul>
-<li><p>描述：主键主键</p>
-<table>
-<thead>
-<tr>
-<th>属性</th>
-<th>类型</th>
-<th>必须指定</th>
-<th>默认值</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>value</td>
-<td>String</td>
-<td>否</td>
-<td>“”</td>
-<td>主键字段名</td>
-</tr>
-<tr>
-<td>type</td>
-<td>Enum</td>
-<td>否</td>
-<td>IdType.NONE</td>
-<td>主键类型</td>
-</tr>
-</tbody></table>
-</li>
-</ul>
-</li>
-</ol>
-<p>IdType:</p>
-<table>
-<thead>
-<tr>
-<th align="center">值</th>
-<th align="center">描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">AUTO</td>
-<td align="center">数据库ID自增</td>
-</tr>
-<tr>
-<td align="center">NONE</td>
-<td align="center">无状态,该类型为未设置主键类型(注解里等于跟随全局,全局里约等于 INPUT)</td>
-</tr>
-<tr>
-<td align="center">INPUT</td>
-<td align="center">insert前自行set主键值</td>
-</tr>
-<tr>
-<td align="center">ASSIGN_ID</td>
-<td align="center">分配ID(主键类型为Number(Long和Integer)或String)(since 3.3.0),使用接口<code>IdentifierGenerator</code>的方法<code>nextId</code>(默认实现类为<code>DefaultIdentifierGenerator</code>雪花算法)</td>
-</tr>
-<tr>
-<td align="center">ASSIGN_UUID</td>
-<td align="center">分配UUID,主键类型为String(since 3.3.0),使用接口<code>IdentifierGenerator</code>的方法<code>nextUUID</code>(默认default方法)</td>
-</tr>
-<tr>
-<td align="center"><del>ID_WORKER</del></td>
-<td align="center">分布式全局唯一ID 长整型类型(please use <code>ASSIGN_ID</code>)</td>
-</tr>
-<tr>
-<td align="center"><del>UUID</del></td>
-<td align="center">32位UUID字符串(please use <code>ASSIGN_UUID</code>)</td>
-</tr>
-<tr>
-<td align="center"><del>ID_WORKER_STR</del></td>
-<td align="center">分布式全局唯一ID 字符串类型(please use <code>ASSIGN_ID</code>)</td>
-</tr>
-</tbody></table>
-<ol start="3">
-<li><p>将新加的UUID做主键的表实体对象中ID设置为ASSIGN_UUID即可：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;</span></span><br><span class="line"><span class="comment"> * 用户表设置</span></span><br><span class="line"><span class="comment"> * &lt;/p&gt;</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> zhangchao</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@since</span> 2020-03-02</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="meta">@TableName</span>(<span class="string">"Gy_User"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GyUser</span> <span class="keyword">implements</span> <span class="title">Serializable</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> serialVersionUID = <span class="number">1L</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 唯一标识ID</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@TableId</span>(value = <span class="string">"UUID"</span>,type = IdType.ASSIGN_UUID)</span><br><span class="line">    <span class="keyword">private</span> String uuid;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 用户编码</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@TableField</span>(<span class="string">"UserCode"</span>)</span><br><span class="line">    <span class="keyword">private</span> String UserCode;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>另外，还可以自定义ID生成器</p>
-<p><img src="https://gitee.com/smiletou/img4md/raw/master/images/20200303134000811.png" alt="20200303134000811"></p>
-<p><img src="https://gitee.com/smiletou/img4md/raw/master/images/20200303134020685.png" alt="20200303134020685"></p>
-</li>
-</ol>
-<p><img src="https://gitee.com/smiletou/img4md/raw/master/images/20200303134043174.png" alt="20200303134043174"></p>
+<p>第2、3中方式相对速度较快。</p>
+<p>例子：</p>
+<p><img src="https://gitee.com/smiletou/img4md/raw/master/images/TIM%E5%9B%BE%E7%89%8720200312152154.png" alt="TIM图片20200312152154"></p>
+<p><strong><em>用locate 是最快的，like 最慢。position一般</em></strong></p>
+<h5 id="方法一：locate-字符-字段名"><a href="#方法一：locate-字符-字段名" class="headerlink" title="方法一：locate(字符,字段名)"></a>方法一：locate(字符,字段名)</h5><p>使用locate(字符,字段名)函数，如果包含，返回&gt;0的数，否则返回0 ，</p>
+<p>它的别名是 position in<br>select * from 表名 where locate(字符,字段)<br>select * from 表名 where position(字符 in 字段);</p>
+<p>例子：判断site表中的url是否包含’http://‘子串,如果不包含则拼接在url字符串开头<br>update site set url =concat(‘http://‘,url) where locate(‘http://‘,url)=0</p>
+<p>注意mysql中字符串的拼接不能使用加号+，用concat函数。</p>
+<p><img src="https://gitee.com/smiletou/img4md/raw/master/images/TIM%E6%88%AA%E5%9B%BE20200312153451.jpg" alt="TIM截图20200312153451"></p>
+<h5 id="方法二：like"><a href="#方法二：like" class="headerlink" title="方法二：like"></a>方法二：like</h5><p>SELECT * FROM 表名 WHERE 字段名 like “%字符%”;</p>
+<h5 id="方法三：find-in-set"><a href="#方法三：find-in-set" class="headerlink" title="方法三：find_in_set()"></a>方法三：find_in_set()</h5><p>利用mysql 字符串函数 find_in_set();</p>
+<p>SELECT * FROM users WHERE find_in_set(‘字符’, 字段名);<br>mysql有很多字符串函数 find_in_set(str1,str2)函数是返回str2中str1所在的位置索引，str2必须以”,”分割开。<br>注：当str2为NO1：“3,6,13,24,33,36”，NO2：“13,33,36,39”时，判断两个数据中str2字段是否包含‘3’</p>
+<p>mysql &gt; SELECT find_in_set()(‘3’,’3,6,13,24,33,36’) as test;<br>-&gt; 1<br>mysql &gt; SELECT find_in_set()(‘3’,’13,33,36,39’) as test;<br>-&gt; 0</p>
+<h5 id="方法四：INSTR-字段-字符"><a href="#方法四：INSTR-字段-字符" class="headerlink" title="方法四：INSTR(字段,字符)"></a>方法四：INSTR(字段,字符)</h5><p>select * from 表名 where INSTR(字段,字符)</p>
 
       
       <!-- reward -->
@@ -267,14 +190,14 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://yak33.github.io/2020/ck7kob18l00013j5rggjsb7l6/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://yak33.github.io/2020/ck7og54210006n4jk29nyctmn/" alt="微信分享二维码">
     </div>
 </div>
 
 <div id="share-mask"></div>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mybatis-Plus/" rel="tag">Mybatis Plus</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%A4%A7%E5%90%8E%E7%AB%AF/" rel="tag">大后端</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%8A%80%E6%9C%AF/" rel="tag">技术</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MySQL/" rel="tag">MySQL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%8A%80%E6%9C%AF/" rel="tag">技术</a></li></ul>
 
 
     </footer>
@@ -285,19 +208,10 @@
   
   <nav class="article-nav">
     
-      <a href="/2020/ck7kob18r00063j5r7q0lf43n/" class="article-nav-link">
-        <strong class="article-nav-caption">上一篇</strong>
-        <div class="article-nav-title">
-          
-            SpringBoot完美整合RabbitMq（一）通过docker安装rabbitMq
-          
-        </div>
-      </a>
     
-    
-      <a href="/2020/ck7kob18z000j3j5rf7p27wt2/" class="article-nav-link">
+      <a href="/2020/ck7og53sk0000n4jkaql5avgu/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">macOS下妙用option按键</div>
+        <div class="article-nav-title">Linux上安装docker完美教程</div>
       </a>
     
   </nav>

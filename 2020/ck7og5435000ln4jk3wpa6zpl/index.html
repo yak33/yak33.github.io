@@ -10,7 +10,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    SpringBoot完美整合RabbitMq（二）RabbitMq等消息中间件简介 |  
+    macOS下妙用option按键 |  
   </title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   
@@ -35,7 +35,7 @@
   <div id="app">
     <main class="content">
       <section class="outer">
-  <article id="post-SpringBoot完美整合RabbitMq（二）RabbitMq等消息中间件简介" class="article article-type-post" itemscope
+  <article id="post-macOS下妙用option按键" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
   <div class="article-inner">
@@ -43,7 +43,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  SpringBoot完美整合RabbitMq（二）RabbitMq等消息中间件简介
+  macOS下妙用option按键
 </h1>
   
 
@@ -52,12 +52,12 @@
 
     
     <div class="article-meta">
-      <a href="/2020/ck7kob18y000g3j5r2bz35j8d/" class="article-date">
-  <time datetime="2020-03-05T04:11:55.000Z" itemprop="datePublished">2020-03-05</time>
+      <a href="/2020/ck7og5435000ln4jk3wpa6zpl/" class="article-date">
+  <time datetime="2020-03-03T05:36:53.000Z" itemprop="datePublished">2020-03-03</time>
 </a>
       
   <div class="article-category">
-    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    <a class="article-category-link" href="/categories/%E5%A5%87%E6%8A%80%E6%B7%AB%E5%B7%A7/">奇技淫巧</a>
   </div>
 
       
@@ -67,7 +67,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">1.2k字</span>
+            <span class="post-count">607字</span>
         </span>
     </span>
 
@@ -76,7 +76,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">4分钟</span>
+            <span class="post-count">2分钟</span>
         </span>
     </span>
 </div>
@@ -103,60 +103,29 @@
       
 
       
-      <h3 id="一、概述"><a href="#一、概述" class="headerlink" title="一、概述"></a>一、概述</h3><ol>
-<li>大多应用中，可通过消息服务中间件来提升系统异步通信、扩展解耦能力</li>
-<li>消息服务中两个重要概念：<br>消息代理（message broker）和目的地（destination）<br>当消息发送者发送消息以后，将由消息代理接管，消息代理保证消息传递到指定目<br>的地。</li>
-<li>消息队列主要有两种形式的目的地</li>
-</ol>
+      <h3 id="macOS下妙用option按键"><a href="#macOS下妙用option按键" class="headerlink" title="macOS下妙用option按键"></a>macOS下妙用option按键</h3><blockquote>
+<p>macOS下option键是非常重要的按键，它的特性是激活一些隐藏功能，所以经常被多数人忽视。现在总结一下option键让你意想不到的功能吧。</p>
+</blockquote>
 <a id="more"></a>
 
-<ol start="4">
-<li><p>队列（queue）：点对点消息通信（point-to-point）</p>
-</li>
-<li><p>主题（topic）：发布（publish）/订阅（subscribe）消息通信<br><img src="https://img-blog.csdnimg.cn/20200305120816159.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2MDMwNTQx,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200305120752615.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2MDMwNTQx,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-</li>
-<li><p>点对点式：<br>– 消息发送者发送消息，消息代理将其放入一个队列中，消息接收者从队列中获取消息内容，<br>消息读取后被移出队列<br>– 消息只有唯一的发送者和接受者，但并不是说只能有一个接收者</p>
-</li>
-<li><p>发布订阅式：<br>– 发送者（发布者）发送消息到主题，多个接收者（订阅者）监听（订阅）这个主题，那么<br>就会在消息到达时同时收到消息</p>
-</li>
-<li><p>JMS（Java Message Service）JAVA消息服务：<br>– 基于JVM消息代理的规范。ActiveMQ、HornetMQ是JMS实现</p>
-</li>
-<li><p>AMQP（Advanced Message Queuing Protocol）<br>– 高级消息队列协议，也是一个消息代理的规范，兼容JMS<br>– RabbitMQ是AMQP的实现</p>
-</li>
-</ol>
-<p><img src="https://img-blog.csdnimg.cn/20200305121035700.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2MDMwNTQx,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<ol start="10">
-<li><p>Spring支持<br>– spring-jms提供了对JMS的支持<br>– spring-rabbit提供了对AMQP的支持<br>– 需要ConnectionFactory的实现来连接消息代理<br>– 提供JmsTemplate、RabbitTemplate来发送消息<br>– @JmsListener（JMS）、@RabbitListener（AMQP）注解在方法上监听消息代理发<br>布的消息<br>– @EnableJms、@EnableRabbit开启支持</p>
-</li>
-<li><p>Spring Boot自动配置<br>– JmsAutoConfiguration<br>– RabbitAutoConfiguration</p>
-</li>
-</ol>
-<h3 id="二、RabbitMQ简介"><a href="#二、RabbitMQ简介" class="headerlink" title="二、RabbitMQ简介"></a>二、RabbitMQ简介</h3><p>RabbitMQ简介：<br>RabbitMQ是一个由erlang开发的AMQP(Advanved Message Queue Protocol)的开源实现。</p>
-<p>核心概念<br><strong>Message</strong><br>消息，消息是不具名的，它由消息头和消息体组成。消息体是不透明的，而消息头则由一系列的可选属性组<br>成，这些属性包括routing-key（路由键）、priority（相对于其他消息的优先权）、delivery-mode（指出<br>该消息可能需要持久性存储）等。</p>
-<p><strong>Publisher</strong><br>消息的生产者，也是一个向交换器发布消息的客户端应用程序。</p>
-<p><strong>Exchange</strong><br>交换器，用来接收生产者发送的消息并将这些消息路由给服务器中的队列。<br>Exchange有4种类型：direct(默认)，fanout, topic, 和headers，不同类型的Exchange转发消息的策略有所区别。</p>
-<p><strong>Queue</strong><br>消息队列，用来保存消息直到发送给消费者。它是消息的容器，也是消息的终点。一个消息<br>可投入一个或多个队列。消息一直在队列里面，等待消费者连接到这个队列将其取走。</p>
-<p><strong>Binding</strong><br>绑定，用于消息队列和交换器之间的关联。一个绑定就是基于路由键将交换器和消息队列连<br>接起来的路由规则，所以可以将交换器理解成一个由绑定构成的路由表。<br>Exchange 和Queue的绑定可以是多对多的关系。</p>
-<p><strong>Connection</strong><br>网络连接，比如一个TCP连接。</p>
-<p><strong>Channel</strong><br>信道，多路复用连接中的一条独立的双向数据流通道。信道是建立在真实的TCP连接内的虚<br>拟连接，AMQP 命令都是通过信道发出去的，不管是发布消息、订阅队列还是接收消息，这<br>些动作都是通过信道完成。因为对于操作系统来说建立和销毁 TCP 都是非常昂贵的开销，所<br>以引入了信道的概念，以复用一条 TCP 连接。</p>
-<p><strong>Consumer</strong><br>消息的消费者，表示一个从消息队列中取得消息的客户端应用程序。</p>
-<p><strong>Virtual Host</strong><br>虚拟主机，表示一批交换器、消息队列和相关对象。虚拟主机是共享相同的身份认证和加<br>密环境的独立服务器域。每个 vhost 本质上就是一个 mini 版的 RabbitMQ 服务器，拥有<br>自己的队列、交换器、绑定和权限机制。vhost 是 AMQP 概念的基础，必须在连接时指定，<br>RabbitMQ 默认的 vhost 是 / 。</p>
-<p><strong>Broker</strong><br>表示消息队列服务器实体</p>
-<p><img src="https://gitee.com/smiletou/img4md/raw/master/images/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2MDMwNTQx,size_16,color_FFFFFF,t_70-20200306202949813.png" alt="在这里插入图片描述"></p>
-<h3 id="三、RabbitMQ运行机制"><a href="#三、RabbitMQ运行机制" class="headerlink" title="三、RabbitMQ运行机制"></a>三、RabbitMQ运行机制</h3><ol>
-<li>AMQP 中的消息路由</li>
-</ol>
-<ul>
-<li>AMQP 中消息的路由过程和 Java 开发者熟悉的 JMS 存在一些差别，AMQP 中增加了<br>Exchange 和 Binding 的角色。生产者把消息发布到 Exchange 上，消息最终到达队列并被<br>消费者接收，而 Binding 决定交换器的消息应该发送到那个队列。</li>
-</ul>
-<p><img src="https://gitee.com/smiletou/img4md/raw/master/images/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2MDMwNTQx,size_16,color_FFFFFF,t_70-20200306202956873.png" alt="在这里插入图片描述"></p>
-<ol start="2">
-<li>Exchange 类型</li>
-</ol>
-<ul>
-<li>Exchange分发消息时根据类型的不同分发策略有区别，目前共四种类型：<br>direct、fanout、topic、headers 。headers 匹配 AMQP 消息的 header<br>而不是路由键， headers 交换器和 direct 交换器完全一致，但性能差很多，<br>目前几乎用不到了，所以直接看另外三种类型：</li>
-</ul>
-<p><img src="https://gitee.com/smiletou/img4md/raw/master/images/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2MDMwNTQx,size_16,color_FFFFFF,t_70-20200306203009086.png" alt="在这里插入图片描述"><br><img src="https://gitee.com/smiletou/img4md/raw/master/images/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2MDMwNTQx,size_16,color_FFFFFF,t_70-20200306203015646.png" alt="在这里插入图片描述"><br><img src="https://gitee.com/smiletou/img4md/raw/master/images/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2MDMwNTQx,size_16,color_FFFFFF,t_70-20200306203021859.png" alt="在这里插入图片描述"></p>
+<h4 id="一、最大化窗口"><a href="#一、最大化窗口" class="headerlink" title="一、最大化窗口"></a>一、最大化窗口</h4><p>mac左上角三个按钮默认为关闭 最小化和全屏，但大多数时候，我们最要的是最大化窗口，而非全屏。这个时候，按住option键，你会发现全屏按键变为 + 号了，点击试一下，窗口最大化了，真香。。。</p>
+<h4 id="二、快速输入特殊字符"><a href="#二、快速输入特殊字符" class="headerlink" title="二、快速输入特殊字符"></a>二、快速输入特殊字符</h4><p>遇到特殊字符怎么办，一般都在菜单栏的点击输入法，再选择 显示表情与符号 再去选择特殊字符。其实使用option能帮你快速输入特殊字符。</p>
+<p>例如：</p>
+<p>输入版权™的快捷键是 option+2</p>
+<p>不等号≠的快捷键是 option+加号</p>
+<p>具体按键如下：</p>
+<p><img src="https://gitee.com/smiletou/img4md/raw/master/images/202002292052361.png" alt="202002292052361"></p>
+<h4 id="三、一键关闭所有窗口"><a href="#三、一键关闭所有窗口" class="headerlink" title="三、一键关闭所有窗口"></a>三、一键关闭所有窗口</h4><p>Command+w是关闭窗口，再加上option一起按就是关闭所有窗口。</p>
+<h4 id="四、快速打开系统偏好设置中的某一项"><a href="#四、快速打开系统偏好设置中的某一项" class="headerlink" title="四、快速打开系统偏好设置中的某一项"></a>四、快速打开系统偏好设置中的某一项</h4><p>一般情况我们调节设置时，都从菜单栏进入系统偏好设置，然后再找其它中的一项再操作。但通过option键可以快速到达某些设置项。主要是mac键盘的第一行支持的快速按键的相关功能。例如：</p>
+<p>option+任意一个音量键会直接打开系统偏好设置中的声音设置</p>
+<p>option+任意一个亮度调节会直接打开显示器设置</p>
+<p>其它几个键大家可以手动试试哦。</p>
+<h4 id="五、访达（Finder）中的option妙用"><a href="#五、访达（Finder）中的option妙用" class="headerlink" title="五、访达（Finder）中的option妙用"></a>五、访达（Finder）中的option妙用</h4><p>1、Finder右键菜单显示后，按option会显示不一样的功能项。</p>
+<p>2、在 Finder 中，按住 Option 键并拖拽文件即可快速复制文件。</p>
+<p>3、选中多个文件，按 ⌘-option-I 即可查看多个文件的大小。</p>
+<p>4、直接删除文件不进入废纸篓：鼠标选中文件后，按⌘-option-delete，文件将直接删除。</p>
+<h4 id="六、快速查看系统参数"><a href="#六、快速查看系统参数" class="headerlink" title="六、快速查看系统参数"></a>六、快速查看系统参数</h4><p>按住option，然后点击菜单栏中的网络、蓝牙、电池会显示一些隐藏的系统参数。按住option再点击菜单栏上的通知，则可以直接关闭通知提示。</p>
+<h4 id="七、强制退出应用"><a href="#七、强制退出应用" class="headerlink" title="七、强制退出应用"></a>七、强制退出应用</h4><p>按住 Option 键，鼠标右键点击 Dock 栏，即可唤出「强制退出」选项。</p>
 
       
       <!-- reward -->
@@ -226,14 +195,14 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://yak33.github.io/2020/ck7kob18y000g3j5r2bz35j8d/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://yak33.github.io/2020/ck7og5435000ln4jk3wpa6zpl/" alt="微信分享二维码">
     </div>
 </div>
 
 <div id="share-mask"></div>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rabbitmq/" rel="tag">rabbitmq</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%8A%80%E6%9C%AF/" rel="tag">技术</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BB%8F%E9%AA%8C%E6%8A%80%E5%B7%A7/" rel="tag">经验技巧</a></li></ul>
 
 
     </footer>
@@ -244,19 +213,19 @@
   
   <nav class="article-nav">
     
-      <a href="/2020/ck7kob18x000e3j5r5vu80200/" class="article-nav-link">
+      <a href="/2020/ck7og54220007n4jk31bo62dp/" class="article-nav-link">
         <strong class="article-nav-caption">上一篇</strong>
         <div class="article-nav-title">
           
-            SpringBoot完美整合RabbitMq（三）一看就懂一写就会的示例代码
+            Mybatis Plus的主键id生成策略方式
           
         </div>
       </a>
     
     
-      <a href="/2020/ck7kob18r00063j5r7q0lf43n/" class="article-nav-link">
+      <a href="/2020/ck7og5439000rn4jk14k46ohj/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">SpringBoot完美整合RabbitMq（一）通过docker安装rabbitMq</div>
+        <div class="article-nav-title">SpringBoot优雅的全局异常处理（二）@RestControllerAdvice注解方式</div>
       </a>
     
   </nav>

@@ -1,8 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>MySQL判断某个字段是否包含某个字符串的方法</title>
+    <url>/2020/ck7og54210006n4jk29nyctmn/</url>
+    <content><![CDATA[<p>通过sql查询语句，查询某个字段中包含特定字符串</p>
+<p>例子：查询e_book表的types字段包含字符串”3”，有下面4种方式：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> e_book <span class="keyword">where</span> types <span class="keyword">like</span> <span class="string">"%3%"</span>;</span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> e_book <span class="keyword">where</span> find_in_set(<span class="string">'3'</span>, types);</span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> e_book <span class="keyword">where</span> <span class="keyword">locate</span>(<span class="string">'3'</span>, types);</span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> e_book <span class="keyword">where</span> <span class="keyword">INSTR</span>(types,<span class="string">'3'</span>);</span><br></pre></td></tr></table></figure>
+
+<p>第2、3中方式相对速度较快。</p>
+<p>例子：</p>
+<p><img src="https://gitee.com/smiletou/img4md/raw/master/images/TIM%E5%9B%BE%E7%89%8720200312152154.png" alt="TIM图片20200312152154"></p>
+<p><strong><em>用locate 是最快的，like 最慢。position一般</em></strong></p>
+<h5 id="方法一：locate-字符-字段名"><a href="#方法一：locate-字符-字段名" class="headerlink" title="方法一：locate(字符,字段名)"></a>方法一：locate(字符,字段名)</h5><p>使用locate(字符,字段名)函数，如果包含，返回&gt;0的数，否则返回0 ，</p>
+<p>它的别名是 position in<br>select * from 表名 where locate(字符,字段)<br>select * from 表名 where position(字符 in 字段);</p>
+<p>例子：判断site表中的url是否包含’http://‘子串,如果不包含则拼接在url字符串开头<br>update site set url =concat(‘http://‘,url) where locate(‘http://‘,url)=0</p>
+<p>注意mysql中字符串的拼接不能使用加号+，用concat函数。</p>
+<p><img src="https://gitee.com/smiletou/img4md/raw/master/images/TIM%E6%88%AA%E5%9B%BE20200312153451.jpg" alt="TIM截图20200312153451"></p>
+<h5 id="方法二：like"><a href="#方法二：like" class="headerlink" title="方法二：like"></a>方法二：like</h5><p>SELECT * FROM 表名 WHERE 字段名 like “%字符%”;</p>
+<h5 id="方法三：find-in-set"><a href="#方法三：find-in-set" class="headerlink" title="方法三：find_in_set()"></a>方法三：find_in_set()</h5><p>利用mysql 字符串函数 find_in_set();</p>
+<p>SELECT * FROM users WHERE find_in_set(‘字符’, 字段名);<br>mysql有很多字符串函数 find_in_set(str1,str2)函数是返回str2中str1所在的位置索引，str2必须以”,”分割开。<br>注：当str2为NO1：“3,6,13,24,33,36”，NO2：“13,33,36,39”时，判断两个数据中str2字段是否包含‘3’</p>
+<p>mysql &gt; SELECT find_in_set()(‘3’,’3,6,13,24,33,36’) as test;<br>-&gt; 1<br>mysql &gt; SELECT find_in_set()(‘3’,’13,33,36,39’) as test;<br>-&gt; 0</p>
+<h5 id="方法四：INSTR-字段-字符"><a href="#方法四：INSTR-字段-字符" class="headerlink" title="方法四：INSTR(字段,字符)"></a>方法四：INSTR(字段,字符)</h5><p>select * from 表名 where INSTR(字段,字符)</p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>技术</tag>
+        <tag>MySQL</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Linux上安装docker完美教程</title>
-    <url>/2020/ck7kob18g00003j5rae0lc8wv/</url>
+    <url>/2020/ck7og53sk0000n4jkaql5avgu/</url>
     <content><![CDATA[<h6 id="一、查看内核版本-lt-Docker-要求-CentOS-系统的内核版本高于-3-10-gt"><a href="#一、查看内核版本-lt-Docker-要求-CentOS-系统的内核版本高于-3-10-gt" class="headerlink" title="一、查看内核版本 &lt;Docker 要求 CentOS 系统的内核版本高于 3.10&gt;"></a>一、查看内核版本 &lt;Docker 要求 CentOS 系统的内核版本高于 3.10&gt;</h6><pre><code>uname -r</code></pre><img src="https://gitee.com/smiletou/img4md/raw/master/images/image-20200309213731273.png" alt="image-20200309213731273" style="zoom:50%;" />
 
 <p><em>以上这是我的</em></p>
@@ -45,7 +75,7 @@ yum -y remove docker-common.x86_64</code></pre></li>
   </entry>
   <entry>
     <title>在人际交往中你悟出过什么道理？</title>
-    <url>/2020/ck7kob192000p3j5renh30vld/</url>
+    <url>/2020/ck7og543b000un4jk9gql1mnk/</url>
     <content><![CDATA[<p>1、与陌生人交谈，只说百分之30，和熟人交谈，只说百分之50，和家人交谈，只说百分之70。永远不要太过坦诚，对别人绝对的坦诚，就是对自己绝对的伤害。</p>
 <p>2、人们会真心祝福生病的人早日康复，但不一定会衷心祝愿中彩票的人过得开心。人性如此，你可以过得很好，但要让别人看到你背后的不如意。比如，你升职了，但你要说工作难度升级，自己应付不来随时会被炒鱿鱼；你买房了，但你要说每个月都有巨额房贷，衣服都买不了了。</p>
 <p>3、有很多的心里话，都以玩笑话的形式说出。有很多真的玩笑，却经常被人当真。</p>
@@ -112,7 +142,7 @@ yum -y remove docker-common.x86_64</code></pre></li>
   </entry>
   <entry>
     <title>SpringBoot完美整合RabbitMq（三）一看就懂一写就会的示例代码</title>
-    <url>/2020/ck7kob18x000e3j5r5vu80200/</url>
+    <url>/2020/ck7og5437000nn4jkf8kvfsyz/</url>
     <content><![CDATA[<blockquote>
 <p>上面两篇文章已简单介绍了rabbitMq的安装和与其它消息中间件的区别。</p>
 <p>详见：</p>
@@ -194,7 +224,7 @@ yum -y remove docker-common.x86_64</code></pre></li>
   </entry>
   <entry>
     <title>SpringBoot完美整合RabbitMq（二）RabbitMq等消息中间件简介</title>
-    <url>/2020/ck7kob18y000g3j5r2bz35j8d/</url>
+    <url>/2020/ck7og5433000in4jkagnocukf/</url>
     <content><![CDATA[<h3 id="一、概述"><a href="#一、概述" class="headerlink" title="一、概述"></a>一、概述</h3><ol>
 <li>大多应用中，可通过消息服务中间件来提升系统异步通信、扩展解耦能力</li>
 <li>消息服务中两个重要概念：<br>消息代理（message broker）和目的地（destination）<br>当消息发送者发送消息以后，将由消息代理接管，消息代理保证消息传递到指定目<br>的地。</li>
@@ -261,7 +291,7 @@ yum -y remove docker-common.x86_64</code></pre></li>
   </entry>
   <entry>
     <title>SpringBoot完美整合RabbitMq（一）通过docker安装rabbitMq</title>
-    <url>/2020/ck7kob18r00063j5r7q0lf43n/</url>
+    <url>/2020/ck7og54230008n4jk24kv4j00/</url>
     <content><![CDATA[<blockquote>
 <p>自己的阿里云ECS服务器，系统是centos7，已安装了docker容器。</p>
 </blockquote>
@@ -299,7 +329,7 @@ yum -y remove docker-common.x86_64</code></pre></li>
   </entry>
   <entry>
     <title>Mybatis Plus的主键id生成策略方式</title>
-    <url>/2020/ck7kob18l00013j5rggjsb7l6/</url>
+    <url>/2020/ck7og54220007n4jk31bo62dp/</url>
     <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><blockquote>
 <p>Mybatis Plus版本是3.3.0</p>
 </blockquote>
@@ -401,14 +431,14 @@ yum -y remove docker-common.x86_64</code></pre></li>
       </categories>
       <tags>
         <tag>技术</tag>
+        <tag>大后端</tag>
         <tag>Java</tag>
         <tag>Mybatis Plus</tag>
-        <tag>大后端</tag>
       </tags>
   </entry>
   <entry>
     <title>macOS下妙用option按键</title>
-    <url>/2020/ck7kob18z000j3j5rf7p27wt2/</url>
+    <url>/2020/ck7og5435000ln4jk3wpa6zpl/</url>
     <content><![CDATA[<h3 id="macOS下妙用option按键"><a href="#macOS下妙用option按键" class="headerlink" title="macOS下妙用option按键"></a>macOS下妙用option按键</h3><blockquote>
 <p>macOS下option键是非常重要的按键，它的特性是激活一些隐藏功能，所以经常被多数人忽视。现在总结一下option键让你意想不到的功能吧。</p>
 </blockquote>
@@ -442,7 +472,7 @@ yum -y remove docker-common.x86_64</code></pre></li>
   </entry>
   <entry>
     <title>SpringBoot优雅的全局异常处理（二）@RestControllerAdvice注解方式</title>
-    <url>/2020/ck7kob18u00093j5rcg3ueo7f/</url>
+    <url>/2020/ck7og5439000rn4jk14k46ohj/</url>
     <content><![CDATA[<h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><blockquote>
 <p>SpringBoot版本：2.1.9.RELEASE<br>Mybatis Plus版本：3.3.0</p>
 </blockquote>
@@ -471,7 +501,7 @@ yum -y remove docker-common.x86_64</code></pre></li>
   </entry>
   <entry>
     <title>SpringBoot优雅的全局异常处理（一）非web项目</title>
-    <url>/2020/ck7kob18o00043j5rclvi70v4/</url>
+    <url>/2020/ck7og542u000bn4jkeoz1cxu1/</url>
     <content><![CDATA[<h5 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h5><blockquote>
 <p>本篇文章主要介绍的是SpringBoot非web项目进行全局异常的处理。<br>SpringBoot版本：2.1.9.RELEASE<br>Mybatis Plus版本：3.3.0</p>
 </blockquote>
@@ -504,7 +534,7 @@ yum -y remove docker-common.x86_64</code></pre></li>
   </entry>
   <entry>
     <title>Spring事务失效的原因总结</title>
-    <url>/2020/ck7kob18w000a3j5rgphndvp9/</url>
+    <url>/2020/ck7og542y000gn4jkhi9t7yrv/</url>
     <content><![CDATA[<p> Spring事务失效的 8 大原因，不见得总结全，但希望可以帮忙有需要的人。</p>
 <a id="more"></a>
 
@@ -557,7 +587,7 @@ yum -y remove docker-common.x86_64</code></pre></li>
   </entry>
   <entry>
     <title>SpringBoot 2.x 整合 redis实战</title>
-    <url>/2020/ck7kob18q00053j5rb45x87n7/</url>
+    <url>/2020/ck7og541x0002n4jk5hrzdr5r/</url>
     <content><![CDATA[<p>这篇文章主要讲解Springboot如何整合开发Redis实现一个基本的案例。使用的是目前Springboot2.x得Lettuce版本。希望对你有帮助。</p>
 <a id="more"></a>
 
@@ -591,13 +621,13 @@ yum -y remove docker-common.x86_64</code></pre></li>
       </categories>
       <tags>
         <tag>技术</tag>
-        <tag>大后端</tag>
         <tag>redis</tag>
+        <tag>大后端</tag>
       </tags>
   </entry>
   <entry>
     <title>SpringBoot入门笔记</title>
-    <url>/2020/ck7kob1a8002g3j5r3je8bd1i/</url>
+    <url>/2020/ck7og5445002ln4jk8ion6exj/</url>
     <content><![CDATA[<h3 id="SpringBoot入门，看这一篇文章就够了"><a href="#SpringBoot入门，看这一篇文章就够了" class="headerlink" title="SpringBoot入门，看这一篇文章就够了"></a>SpringBoot入门，看这一篇文章就够了</h3><a id="more"></a>
 
 <h1 id="一、Spring-Boot-入门"><a href="#一、Spring-Boot-入门" class="headerlink" title="一、Spring Boot 入门"></a><strong>一、</strong>Spring Boot 入门</h1><h2 id="1、Spring-Boot-简介"><a href="#1、Spring-Boot-简介" class="headerlink" title="1、Spring Boot 简介"></a>1、Spring Boot 简介</h2><blockquote>
@@ -1818,8 +1848,8 @@ yum -y remove docker-common.x86_64</code></pre></li>
       </categories>
       <tags>
         <tag>技术</tag>
-        <tag>Java</tag>
         <tag>大后端</tag>
+        <tag>Java</tag>
         <tag>SpringBoot</tag>
       </tags>
   </entry>
