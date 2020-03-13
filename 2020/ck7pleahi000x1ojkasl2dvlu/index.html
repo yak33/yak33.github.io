@@ -10,7 +10,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    MySQL判断某个字段是否包含某个字符串的方法 |  
+    macOS下妙用option按键 |  
   </title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   
@@ -35,7 +35,7 @@
   <div id="app">
     <main class="content">
       <section class="outer">
-  <article id="post-MySQL判断某个字段是否包含某个字符串的方法" class="article article-type-post" itemscope
+  <article id="post-macOS下妙用option按键" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
   <div class="article-inner">
@@ -43,7 +43,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  MySQL判断某个字段是否包含某个字符串的方法
+  macOS下妙用option按键
 </h1>
   
 
@@ -52,12 +52,12 @@
 
     
     <div class="article-meta">
-      <a href="/2020/ck7ohyggc0006ccjk0jrldqwv/" class="article-date">
-  <time datetime="2020-03-12T06:57:20.000Z" itemprop="datePublished">2020-03-12</time>
+      <a href="/2020/ck7pleahi000x1ojkasl2dvlu/" class="article-date">
+  <time datetime="2020-03-03T05:36:53.000Z" itemprop="datePublished">2020-03-03</time>
 </a>
       
   <div class="article-category">
-    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+    <a class="article-category-link" href="/categories/%E5%A5%87%E6%8A%80%E6%B7%AB%E5%B7%A7/">奇技淫巧</a>
   </div>
 
       
@@ -67,7 +67,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">365字</span>
+            <span class="post-count">607字</span>
         </span>
     </span>
 
@@ -76,7 +76,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">1分钟</span>
+            <span class="post-count">2分钟</span>
         </span>
     </span>
 </div>
@@ -103,26 +103,29 @@
       
 
       
-      <p>通过sql查询语句，查询某个字段中包含特定字符串</p>
-<p>例子：查询e_book表的types字段包含字符串”3”，有下面4种方式：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> e_book <span class="keyword">where</span> types <span class="keyword">like</span> <span class="string">"%3%"</span>;</span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> e_book <span class="keyword">where</span> find_in_set(<span class="string">'3'</span>, types);</span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> e_book <span class="keyword">where</span> <span class="keyword">locate</span>(<span class="string">'3'</span>, types);</span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> e_book <span class="keyword">where</span> <span class="keyword">INSTR</span>(types,<span class="string">'3'</span>);</span><br></pre></td></tr></table></figure>
-
-<p>第2、3中方式相对速度较快。</p>
+      <h3 id="macOS下妙用option按键"><a href="#macOS下妙用option按键" class="headerlink" title="macOS下妙用option按键"></a>macOS下妙用option按键</h3><blockquote>
+<p>macOS下option键是非常重要的按键，它的特性是激活一些隐藏功能，所以经常被多数人忽视。现在总结一下option键让你意想不到的功能吧。</p>
+</blockquote>
 <a id="more"></a>
 
-<p>例子：</p>
-<p><img src="https://gitee.com/smiletou/img4md/raw/master/images/TIM%E5%9B%BE%E7%89%8720200312152154.png" alt="TIM图片20200312152154"></p>
-<p><strong><em>用locate 是最快的，like 最慢。position一般</em></strong></p>
-<h5 id="方法一：locate-字符-字段名"><a href="#方法一：locate-字符-字段名" class="headerlink" title="方法一：locate(字符,字段名)"></a>方法一：locate(字符,字段名)</h5><p>使用locate(字符,字段名)函数，如果包含，返回&gt;0的数，否则返回0 ，</p>
-<p>它的别名是 position in<br>select * from 表名 where locate(字符,字段)<br>select * from 表名 where position(字符 in 字段);</p>
-<p>例子：判断site表中的url是否包含’http://‘子串,如果不包含则拼接在url字符串开头<br>update site set url =concat(‘http://‘,url) where locate(‘http://‘,url)=0</p>
-<p>注意mysql中字符串的拼接不能使用加号+，用concat函数。</p>
-<p><img src="https://gitee.com/smiletou/img4md/raw/master/images/TIM%E6%88%AA%E5%9B%BE20200312153451.jpg" alt="TIM截图20200312153451"></p>
-<h5 id="方法二：like"><a href="#方法二：like" class="headerlink" title="方法二：like"></a>方法二：like</h5><p>SELECT * FROM 表名 WHERE 字段名 like “%字符%”;</p>
-<h5 id="方法三：find-in-set"><a href="#方法三：find-in-set" class="headerlink" title="方法三：find_in_set()"></a>方法三：find_in_set()</h5><p>利用mysql 字符串函数 find_in_set();</p>
-<p>SELECT * FROM users WHERE find_in_set(‘字符’, 字段名);<br>mysql有很多字符串函数 find_in_set(str1,str2)函数是返回str2中str1所在的位置索引，str2必须以”,”分割开。<br>注：当str2为NO1：“3,6,13,24,33,36”，NO2：“13,33,36,39”时，判断两个数据中str2字段是否包含‘3’</p>
-<p>mysql &gt; SELECT find_in_set()(‘3’,’3,6,13,24,33,36’) as test;<br>-&gt; 1<br>mysql &gt; SELECT find_in_set()(‘3’,’13,33,36,39’) as test;<br>-&gt; 0</p>
-<h5 id="方法四：INSTR-字段-字符"><a href="#方法四：INSTR-字段-字符" class="headerlink" title="方法四：INSTR(字段,字符)"></a>方法四：INSTR(字段,字符)</h5><p>select * from 表名 where INSTR(字段,字符)</p>
+<h4 id="一、最大化窗口"><a href="#一、最大化窗口" class="headerlink" title="一、最大化窗口"></a>一、最大化窗口</h4><p>mac左上角三个按钮默认为关闭 最小化和全屏，但大多数时候，我们最要的是最大化窗口，而非全屏。这个时候，按住option键，你会发现全屏按键变为 + 号了，点击试一下，窗口最大化了，真香。。。</p>
+<h4 id="二、快速输入特殊字符"><a href="#二、快速输入特殊字符" class="headerlink" title="二、快速输入特殊字符"></a>二、快速输入特殊字符</h4><p>遇到特殊字符怎么办，一般都在菜单栏的点击输入法，再选择 显示表情与符号 再去选择特殊字符。其实使用option能帮你快速输入特殊字符。</p>
+<p>例如：</p>
+<p>输入版权™的快捷键是 option+2</p>
+<p>不等号≠的快捷键是 option+加号</p>
+<p>具体按键如下：</p>
+<p><img src="https://gitee.com/smiletou/img4md/raw/master/images/202002292052361.png" alt="202002292052361"></p>
+<h4 id="三、一键关闭所有窗口"><a href="#三、一键关闭所有窗口" class="headerlink" title="三、一键关闭所有窗口"></a>三、一键关闭所有窗口</h4><p>Command+w是关闭窗口，再加上option一起按就是关闭所有窗口。</p>
+<h4 id="四、快速打开系统偏好设置中的某一项"><a href="#四、快速打开系统偏好设置中的某一项" class="headerlink" title="四、快速打开系统偏好设置中的某一项"></a>四、快速打开系统偏好设置中的某一项</h4><p>一般情况我们调节设置时，都从菜单栏进入系统偏好设置，然后再找其它中的一项再操作。但通过option键可以快速到达某些设置项。主要是mac键盘的第一行支持的快速按键的相关功能。例如：</p>
+<p>option+任意一个音量键会直接打开系统偏好设置中的声音设置</p>
+<p>option+任意一个亮度调节会直接打开显示器设置</p>
+<p>其它几个键大家可以手动试试哦。</p>
+<h4 id="五、访达（Finder）中的option妙用"><a href="#五、访达（Finder）中的option妙用" class="headerlink" title="五、访达（Finder）中的option妙用"></a>五、访达（Finder）中的option妙用</h4><p>1、Finder右键菜单显示后，按option会显示不一样的功能项。</p>
+<p>2、在 Finder 中，按住 Option 键并拖拽文件即可快速复制文件。</p>
+<p>3、选中多个文件，按 ⌘-option-I 即可查看多个文件的大小。</p>
+<p>4、直接删除文件不进入废纸篓：鼠标选中文件后，按⌘-option-delete，文件将直接删除。</p>
+<h4 id="六、快速查看系统参数"><a href="#六、快速查看系统参数" class="headerlink" title="六、快速查看系统参数"></a>六、快速查看系统参数</h4><p>按住option，然后点击菜单栏中的网络、蓝牙、电池会显示一些隐藏的系统参数。按住option再点击菜单栏上的通知，则可以直接关闭通知提示。</p>
+<h4 id="七、强制退出应用"><a href="#七、强制退出应用" class="headerlink" title="七、强制退出应用"></a>七、强制退出应用</h4><p>按住 Option 键，鼠标右键点击 Dock 栏，即可唤出「强制退出」选项。</p>
 
       
       <!-- reward -->
@@ -192,14 +195,14 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://yak33.github.io/2020/ck7ohyggc0006ccjk0jrldqwv/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://yak33.github.io/2020/ck7pleahi000x1ojkasl2dvlu/" alt="微信分享二维码">
     </div>
 </div>
 
 <div id="share-mask"></div>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MySQL/" rel="tag">MySQL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%8A%80%E6%9C%AF/" rel="tag">技术</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BB%8F%E9%AA%8C%E6%8A%80%E5%B7%A7/" rel="tag">经验技巧</a></li></ul>
 
 
     </footer>
@@ -210,19 +213,19 @@
   
   <nav class="article-nav">
     
-      <a href="/2020/ck7ohyggf0008ccjk7nik4qa2/" class="article-nav-link">
+      <a href="/2020/ck7pleagu00061ojkfzz31du7/" class="article-nav-link">
         <strong class="article-nav-caption">上一篇</strong>
         <div class="article-nav-title">
           
-            SpringBoot 2整合SpringSecurity权限管理（一）SpringSecurity介绍及简单搭建
+            Mybatis Plus的主键id生成策略方式
           
         </div>
       </a>
     
     
-      <a href="/2020/ck7ohygfz0000ccjk6oqmcv0e/" class="article-nav-link">
+      <a href="/2020/ck7pleah6000i1ojk3mfr2ewh/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">Linux上安装docker完美教程</div>
+        <div class="article-nav-title">SpringBoot优雅的全局异常处理（二）@RestControllerAdvice注解方式</div>
       </a>
     
   </nav>
