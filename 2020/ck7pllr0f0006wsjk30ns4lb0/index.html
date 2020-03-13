@@ -10,7 +10,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    SpringBoot完美整合RabbitMq（二）RabbitMq等消息中间件简介 |  
+    Mybatis Plus的主键id生成策略方式 |  
   </title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   
@@ -35,7 +35,7 @@
   <div id="app">
     <main class="content">
       <section class="outer">
-  <article id="post-SpringBoot完美整合RabbitMq（二）RabbitMq等消息中间件简介" class="article article-type-post" itemscope
+  <article id="post-Mybatis Plus的主键id生成策略方式" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
   <div class="article-inner">
@@ -43,7 +43,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  SpringBoot完美整合RabbitMq（二）RabbitMq等消息中间件简介
+  Mybatis Plus的主键id生成策略方式
 </h1>
   
 
@@ -52,8 +52,8 @@
 
     
     <div class="article-meta">
-      <a href="/2020/ck7pleahd000n1ojkhzmacc3a/" class="article-date">
-  <time datetime="2020-03-05T04:11:55.000Z" itemprop="datePublished">2020-03-05</time>
+      <a href="/2020/ck7pllr0f0006wsjk30ns4lb0/" class="article-date">
+  <time datetime="2020-03-03T05:36:53.000Z" itemprop="datePublished">2020-03-03</time>
 </a>
       
   <div class="article-category">
@@ -67,7 +67,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">1.2k字</span>
+            <span class="post-count">445字</span>
         </span>
     </span>
 
@@ -76,7 +76,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">4分钟</span>
+            <span class="post-count">1分钟</span>
         </span>
     </span>
 </div>
@@ -103,60 +103,101 @@
       
 
       
-      <h3 id="一、概述"><a href="#一、概述" class="headerlink" title="一、概述"></a>一、概述</h3><ol>
-<li>大多应用中，可通过消息服务中间件来提升系统异步通信、扩展解耦能力</li>
-<li>消息服务中两个重要概念：<br>消息代理（message broker）和目的地（destination）<br>当消息发送者发送消息以后，将由消息代理接管，消息代理保证消息传递到指定目<br>的地。</li>
-<li>消息队列主要有两种形式的目的地</li>
-</ol>
+      <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><blockquote>
+<p>Mybatis Plus版本是3.3.0</p>
+</blockquote>
+<p>目前手上的项目中用的数据库是MySQL，所有的表中主键ID都是int自增长，现在引入了几个外部的表，主键ID是用的String类型的UUID，就不能用代码生成器自动生成的默认的策略了。</p>
 <a id="more"></a>
 
-<ol start="4">
-<li><p>队列（queue）：点对点消息通信（point-to-point）</p>
-</li>
-<li><p>主题（topic）：发布（publish）/订阅（subscribe）消息通信<br><img src="https://img-blog.csdnimg.cn/20200305120816159.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2MDMwNTQx,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200305120752615.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2MDMwNTQx,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-</li>
-<li><p>点对点式：<br>– 消息发送者发送消息，消息代理将其放入一个队列中，消息接收者从队列中获取消息内容，<br>消息读取后被移出队列<br>– 消息只有唯一的发送者和接受者，但并不是说只能有一个接收者</p>
-</li>
-<li><p>发布订阅式：<br>– 发送者（发布者）发送消息到主题，多个接收者（订阅者）监听（订阅）这个主题，那么<br>就会在消息到达时同时收到消息</p>
-</li>
-<li><p>JMS（Java Message Service）JAVA消息服务：<br>– 基于JVM消息代理的规范。ActiveMQ、HornetMQ是JMS实现</p>
-</li>
-<li><p>AMQP（Advanced Message Queuing Protocol）<br>– 高级消息队列协议，也是一个消息代理的规范，兼容JMS<br>– RabbitMQ是AMQP的实现</p>
-</li>
+<ol>
+<li>原来的表中的id（mp的代码生成器默认），如：</li>
 </ol>
-<p><img src="https://img-blog.csdnimg.cn/20200305121035700.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2MDMwNTQx,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<ol start="10">
-<li><p>Spring支持<br>– spring-jms提供了对JMS的支持<br>– spring-rabbit提供了对AMQP的支持<br>– 需要ConnectionFactory的实现来连接消息代理<br>– 提供JmsTemplate、RabbitTemplate来发送消息<br>– @JmsListener（JMS）、@RabbitListener（AMQP）注解在方法上监听消息代理发<br>布的消息<br>– @EnableJms、@EnableRabbit开启支持</p>
-</li>
-<li><p>Spring Boot自动配置<br>– JmsAutoConfiguration<br>– RabbitAutoConfiguration</p>
-</li>
-</ol>
-<h3 id="二、RabbitMQ简介"><a href="#二、RabbitMQ简介" class="headerlink" title="二、RabbitMQ简介"></a>二、RabbitMQ简介</h3><p>RabbitMQ简介：<br>RabbitMQ是一个由erlang开发的AMQP(Advanved Message Queue Protocol)的开源实现。</p>
-<p>核心概念<br><strong>Message</strong><br>消息，消息是不具名的，它由消息头和消息体组成。消息体是不透明的，而消息头则由一系列的可选属性组<br>成，这些属性包括routing-key（路由键）、priority（相对于其他消息的优先权）、delivery-mode（指出<br>该消息可能需要持久性存储）等。</p>
-<p><strong>Publisher</strong><br>消息的生产者，也是一个向交换器发布消息的客户端应用程序。</p>
-<p><strong>Exchange</strong><br>交换器，用来接收生产者发送的消息并将这些消息路由给服务器中的队列。<br>Exchange有4种类型：direct(默认)，fanout, topic, 和headers，不同类型的Exchange转发消息的策略有所区别。</p>
-<p><strong>Queue</strong><br>消息队列，用来保存消息直到发送给消费者。它是消息的容器，也是消息的终点。一个消息<br>可投入一个或多个队列。消息一直在队列里面，等待消费者连接到这个队列将其取走。</p>
-<p><strong>Binding</strong><br>绑定，用于消息队列和交换器之间的关联。一个绑定就是基于路由键将交换器和消息队列连<br>接起来的路由规则，所以可以将交换器理解成一个由绑定构成的路由表。<br>Exchange 和Queue的绑定可以是多对多的关系。</p>
-<p><strong>Connection</strong><br>网络连接，比如一个TCP连接。</p>
-<p><strong>Channel</strong><br>信道，多路复用连接中的一条独立的双向数据流通道。信道是建立在真实的TCP连接内的虚<br>拟连接，AMQP 命令都是通过信道发出去的，不管是发布消息、订阅队列还是接收消息，这<br>些动作都是通过信道完成。因为对于操作系统来说建立和销毁 TCP 都是非常昂贵的开销，所<br>以引入了信道的概念，以复用一条 TCP 连接。</p>
-<p><strong>Consumer</strong><br>消息的消费者，表示一个从消息队列中取得消息的客户端应用程序。</p>
-<p><strong>Virtual Host</strong><br>虚拟主机，表示一批交换器、消息队列和相关对象。虚拟主机是共享相同的身份认证和加<br>密环境的独立服务器域。每个 vhost 本质上就是一个 mini 版的 RabbitMQ 服务器，拥有<br>自己的队列、交换器、绑定和权限机制。vhost 是 AMQP 概念的基础，必须在连接时指定，<br>RabbitMQ 默认的 vhost 是 / 。</p>
-<p><strong>Broker</strong><br>表示消息队列服务器实体</p>
-<p><img src="https://gitee.com/smiletou/img4md/raw/master/images/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2MDMwNTQx,size_16,color_FFFFFF,t_70-20200306202949813.png" alt="在这里插入图片描述"></p>
-<h3 id="三、RabbitMQ运行机制"><a href="#三、RabbitMQ运行机制" class="headerlink" title="三、RabbitMQ运行机制"></a>三、RabbitMQ运行机制</h3><ol>
-<li>AMQP 中的消息路由</li>
-</ol>
-<ul>
-<li>AMQP 中消息的路由过程和 Java 开发者熟悉的 JMS 存在一些差别，AMQP 中增加了<br>Exchange 和 Binding 的角色。生产者把消息发布到 Exchange 上，消息最终到达队列并被<br>消费者接收，而 Binding 决定交换器的消息应该发送到那个队列。</li>
-</ul>
-<p><img src="https://gitee.com/smiletou/img4md/raw/master/images/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2MDMwNTQx,size_16,color_FFFFFF,t_70-20200306202956873.png" alt="在这里插入图片描述"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;</span></span><br><span class="line"><span class="comment"> * 发票表</span></span><br><span class="line"><span class="comment"> * &lt;/p&gt;</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> zhangchao</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@since</span> 2019-09-16</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ApplyInvoices</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@TableId</span>(value = <span class="string">"ID"</span>, type = IdType.AUTO)</span><br><span class="line">    <span class="keyword">private</span> Long id;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 发票号</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@TableField</span>(<span class="string">"INVOICE_NO"</span>)</span><br><span class="line">    <span class="keyword">private</span> String invoiceNo;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">  * 发票流水号</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@TableField</span>(<span class="string">"CUSTOMS_CODE"</span>)</span><br><span class="line">    <span class="keyword">private</span> String customsCode;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <ol start="2">
-<li>Exchange 类型</li>
-</ol>
+<li><p>查阅mp的官方文档@TableId注解，可知有如下几种方式：</p>
+<p><strong>@TableId</strong></p>
 <ul>
-<li>Exchange分发消息时根据类型的不同分发策略有区别，目前共四种类型：<br>direct、fanout、topic、headers 。headers 匹配 AMQP 消息的 header<br>而不是路由键， headers 交换器和 direct 交换器完全一致，但性能差很多，<br>目前几乎用不到了，所以直接看另外三种类型：</li>
+<li><p>描述：主键主键</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>类型</th>
+<th>必须指定</th>
+<th>默认值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>value</td>
+<td>String</td>
+<td>否</td>
+<td>“”</td>
+<td>主键字段名</td>
+</tr>
+<tr>
+<td>type</td>
+<td>Enum</td>
+<td>否</td>
+<td>IdType.NONE</td>
+<td>主键类型</td>
+</tr>
+</tbody></table>
+</li>
 </ul>
-<p><img src="https://gitee.com/smiletou/img4md/raw/master/images/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2MDMwNTQx,size_16,color_FFFFFF,t_70-20200306203009086.png" alt="在这里插入图片描述"><br><img src="https://gitee.com/smiletou/img4md/raw/master/images/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2MDMwNTQx,size_16,color_FFFFFF,t_70-20200306203015646.png" alt="在这里插入图片描述"><br><img src="https://gitee.com/smiletou/img4md/raw/master/images/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzI2MDMwNTQx,size_16,color_FFFFFF,t_70-20200306203021859.png" alt="在这里插入图片描述"></p>
+</li>
+</ol>
+<p>IdType:</p>
+<table>
+<thead>
+<tr>
+<th align="center">值</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">AUTO</td>
+<td align="center">数据库ID自增</td>
+</tr>
+<tr>
+<td align="center">NONE</td>
+<td align="center">无状态,该类型为未设置主键类型(注解里等于跟随全局,全局里约等于 INPUT)</td>
+</tr>
+<tr>
+<td align="center">INPUT</td>
+<td align="center">insert前自行set主键值</td>
+</tr>
+<tr>
+<td align="center">ASSIGN_ID</td>
+<td align="center">分配ID(主键类型为Number(Long和Integer)或String)(since 3.3.0),使用接口<code>IdentifierGenerator</code>的方法<code>nextId</code>(默认实现类为<code>DefaultIdentifierGenerator</code>雪花算法)</td>
+</tr>
+<tr>
+<td align="center">ASSIGN_UUID</td>
+<td align="center">分配UUID,主键类型为String(since 3.3.0),使用接口<code>IdentifierGenerator</code>的方法<code>nextUUID</code>(默认default方法)</td>
+</tr>
+<tr>
+<td align="center"><del>ID_WORKER</del></td>
+<td align="center">分布式全局唯一ID 长整型类型(please use <code>ASSIGN_ID</code>)</td>
+</tr>
+<tr>
+<td align="center"><del>UUID</del></td>
+<td align="center">32位UUID字符串(please use <code>ASSIGN_UUID</code>)</td>
+</tr>
+<tr>
+<td align="center"><del>ID_WORKER_STR</del></td>
+<td align="center">分布式全局唯一ID 字符串类型(please use <code>ASSIGN_ID</code>)</td>
+</tr>
+</tbody></table>
+<ol start="3">
+<li><p>将新加的UUID做主键的表实体对象中ID设置为ASSIGN_UUID即可：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;</span></span><br><span class="line"><span class="comment"> * 用户表设置</span></span><br><span class="line"><span class="comment"> * &lt;/p&gt;</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> zhangchao</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@since</span> 2020-03-02</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="meta">@TableName</span>(<span class="string">"Gy_User"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GyUser</span> <span class="keyword">implements</span> <span class="title">Serializable</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> serialVersionUID = <span class="number">1L</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 唯一标识ID</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@TableId</span>(value = <span class="string">"UUID"</span>,type = IdType.ASSIGN_UUID)</span><br><span class="line">    <span class="keyword">private</span> String uuid;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 用户编码</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@TableField</span>(<span class="string">"UserCode"</span>)</span><br><span class="line">    <span class="keyword">private</span> String UserCode;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>另外，还可以自定义ID生成器</p>
+<p><img src="https://gitee.com/smiletou/img4md/raw/master/images/20200303134000811.png" alt="20200303134000811"></p>
+<p><img src="https://gitee.com/smiletou/img4md/raw/master/images/20200303134020685.png" alt="20200303134020685"></p>
+</li>
+</ol>
+<p><img src="https://gitee.com/smiletou/img4md/raw/master/images/20200303134043174.png" alt="20200303134043174"></p>
 
       
       <!-- reward -->
@@ -226,14 +267,14 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://yak33.github.io/2020/ck7pleahd000n1ojkhzmacc3a/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://yak33.github.io/2020/ck7pllr0f0006wsjk30ns4lb0/" alt="微信分享二维码">
     </div>
 </div>
 
 <div id="share-mask"></div>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rabbitmq/" rel="tag">rabbitmq</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%8A%80%E6%9C%AF/" rel="tag">技术</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mybatis-Plus/" rel="tag">Mybatis Plus</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%A4%A7%E5%90%8E%E7%AB%AF/" rel="tag">大后端</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%8A%80%E6%9C%AF/" rel="tag">技术</a></li></ul>
 
 
     </footer>
@@ -244,19 +285,19 @@
   
   <nav class="article-nav">
     
-      <a href="/2020/ck7pleah7000l1ojk8uc1f3js/" class="article-nav-link">
+      <a href="/2020/ck7pllr0x000lwsjk9nd698xj/" class="article-nav-link">
         <strong class="article-nav-caption">上一篇</strong>
         <div class="article-nav-title">
           
-            SpringBoot完美整合RabbitMq（三）一看就懂一写就会的示例代码
+            SpringBoot完美整合RabbitMq（一）通过docker安装rabbitMq
           
         </div>
       </a>
     
     
-      <a href="/2020/ck7pleah4000g1ojkgn9z038h/" class="article-nav-link">
+      <a href="/2020/ck7pllr14000xwsjk7bjics4o/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">SpringBoot完美整合RabbitMq（一）通过docker安装rabbitMq</div>
+        <div class="article-nav-title">macOS下妙用option按键</div>
       </a>
     
   </nav>

@@ -10,7 +10,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    Mybatis Plus的主键id生成策略方式 |  
+    SpringBoot 2整合SpringSecurity权限管理（二）配置自定义登录成功和失败处理器 |  
   </title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   
@@ -35,7 +35,7 @@
   <div id="app">
     <main class="content">
       <section class="outer">
-  <article id="post-Mybatis Plus的主键id生成策略方式" class="article article-type-post" itemscope
+  <article id="post-SpringBoot 2整合SpringSecurity权限管理（二）配置自定义登录成功和失败处理器" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
   <div class="article-inner">
@@ -43,7 +43,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  Mybatis Plus的主键id生成策略方式
+  SpringBoot 2整合SpringSecurity权限管理（二）配置自定义登录成功和失败处理器
 </h1>
   
 
@@ -52,8 +52,8 @@
 
     
     <div class="article-meta">
-      <a href="/2020/ck7pleagu00061ojkfzz31du7/" class="article-date">
-  <time datetime="2020-03-03T05:36:53.000Z" itemprop="datePublished">2020-03-03</time>
+      <a href="/2020/ck7pllr0n000cwsjkf9km3w9r/" class="article-date">
+  <time datetime="2020-03-13T03:02:20.000Z" itemprop="datePublished">2020-03-13</time>
 </a>
       
   <div class="article-category">
@@ -67,7 +67,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">445字</span>
+            <span class="post-count">1.1k字</span>
         </span>
     </span>
 
@@ -76,7 +76,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">1分钟</span>
+            <span class="post-count">4分钟</span>
         </span>
     </span>
 </div>
@@ -103,101 +103,31 @@
       
 
       
-      <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><blockquote>
-<p>Mybatis Plus版本是3.3.0</p>
-</blockquote>
-<p>目前手上的项目中用的数据库是MySQL，所有的表中主键ID都是int自增长，现在引入了几个外部的表，主键ID是用的String类型的UUID，就不能用代码生成器自动生成的默认的策略了。</p>
+      <h5 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h5><p>上一篇文章讲了，登陆完后会给我们返回信息，这没毛病，但是问题来了，他跳转了页面，假设我们不想跳转页面，只想返回固定格式的JSON呢？这就需要我们自定义成功处理器了。失败的情况也雷同。</p>
 <a id="more"></a>
 
-<ol>
-<li>原来的表中的id（mp的代码生成器默认），如：</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;</span></span><br><span class="line"><span class="comment"> * 发票表</span></span><br><span class="line"><span class="comment"> * &lt;/p&gt;</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> zhangchao</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@since</span> 2019-09-16</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ApplyInvoices</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@TableId</span>(value = <span class="string">"ID"</span>, type = IdType.AUTO)</span><br><span class="line">    <span class="keyword">private</span> Long id;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 发票号</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@TableField</span>(<span class="string">"INVOICE_NO"</span>)</span><br><span class="line">    <span class="keyword">private</span> String invoiceNo;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">  * 发票流水号</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@TableField</span>(<span class="string">"CUSTOMS_CODE"</span>)</span><br><span class="line">    <span class="keyword">private</span> String customsCode;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="一、创建登录成功处理器LoginSuccessHandler，并重写onAuthenticationSuccess方法"><a href="#一、创建登录成功处理器LoginSuccessHandler，并重写onAuthenticationSuccess方法" class="headerlink" title="一、创建登录成功处理器LoginSuccessHandler，并重写onAuthenticationSuccess方法"></a>一、创建登录成功处理器LoginSuccessHandler，并重写onAuthenticationSuccess方法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Slf</span>4j</span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LoginSuccessHandler</span> <span class="keyword">extends</span> <span class="title">SavedRequestAwareAuthenticationSuccessHandler</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onAuthenticationSuccess</span><span class="params">(HttpServletRequest request, HttpServletResponse response, Authentication authentication)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        log.info(<span class="string">"登录成功！"</span>);</span><br><span class="line">        <span class="comment">/* 默认：会帮我们跳转到上一次请求的页面上 */</span></span><br><span class="line">        <span class="comment">//super.onAuthenticationSuccess(request, response, authentication);</span></span><br><span class="line">        response.setStatus(HttpServletResponse.SC_OK);</span><br><span class="line">        response.setContentType(MediaType.APPLICATION_JSON_UTF8_VALUE);</span><br><span class="line">        PrintWriter writer = response.getWriter();</span><br><span class="line">        writer.write(<span class="string">"登录成功"</span>);</span><br><span class="line">        writer.flush();</span><br><span class="line">        writer.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<ol start="2">
-<li><p>查阅mp的官方文档@TableId注解，可知有如下几种方式：</p>
-<p><strong>@TableId</strong></p>
-<ul>
-<li><p>描述：主键主键</p>
-<table>
-<thead>
-<tr>
-<th>属性</th>
-<th>类型</th>
-<th>必须指定</th>
-<th>默认值</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>value</td>
-<td>String</td>
-<td>否</td>
-<td>“”</td>
-<td>主键字段名</td>
-</tr>
-<tr>
-<td>type</td>
-<td>Enum</td>
-<td>否</td>
-<td>IdType.NONE</td>
-<td>主键类型</td>
-</tr>
-</tbody></table>
-</li>
-</ul>
-</li>
+<p>Spring Security完成用户登录后跳转回原页面的处理是在SavedRequestAwareAuthenticationSuccessHandler类里面进行的，如果想要自定义登录成功后的操作可以继承该类，重写该方法。为什么不实现AuthenticationSuccessHandler接口，而是继承SavedRequestAwareAuthenticationSuccessHandler类的方式？因为SavedRequestAwareAuthenticationSuccessHandler这个类记住了你上一次的请求路径，比如：你请求user.html。然后被拦截到了登录页，这时候你输入完用户名密码点击登录，会自动跳转到user.html，而不是主页面。</p>
+<p>若是前后分离项目则实现接口即可，因为我弄的是通用的权限组件，所以选择了继承。</p>
+<p>一种成功的身份验证策略，通过ExceptionTranslationFilter，默认将DefaultSavedRequest存储在session中当这样的请求被截获并需要身份验证时，在身份验证过程开始之前存储请求数据以记录原始目的地（url）并允许在重定向到相同的URL时重键请求，如果合适的话，这个类负责执行到原始URL的重定向。</p>
+<p>在成功进行验证之后，它根据以下场景确定重定向目标：</p>
+<ol>
+<li>如果alwaysUseDefaultTargetUrl属性设置为true，则defaultTargetUrl将用于目标.会话中存储的任何defaultSavedRequest将被删除。</li>
+<li>如果在请求中设置了targetUrlParameter,则该值将用作目标。defaultTargetUrl将再次被删除</li>
+<li>如果在RequestCache中找到SavedRequest(由ExceptionTranslationFilter所设置，在验证过程开始之前记录原始目的地)，将对原始目的地的Url执行重定向。当收到重定向请求时，SavedRequest对象将保持缓存状态并被拾取（请参阅SavedRequestAwareWrapper）</li>
+<li>如果找不到SavedRequest它将委托给基类（父类）。</li>
 </ol>
-<p>IdType:</p>
-<table>
-<thead>
-<tr>
-<th align="center">值</th>
-<th align="center">描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">AUTO</td>
-<td align="center">数据库ID自增</td>
-</tr>
-<tr>
-<td align="center">NONE</td>
-<td align="center">无状态,该类型为未设置主键类型(注解里等于跟随全局,全局里约等于 INPUT)</td>
-</tr>
-<tr>
-<td align="center">INPUT</td>
-<td align="center">insert前自行set主键值</td>
-</tr>
-<tr>
-<td align="center">ASSIGN_ID</td>
-<td align="center">分配ID(主键类型为Number(Long和Integer)或String)(since 3.3.0),使用接口<code>IdentifierGenerator</code>的方法<code>nextId</code>(默认实现类为<code>DefaultIdentifierGenerator</code>雪花算法)</td>
-</tr>
-<tr>
-<td align="center">ASSIGN_UUID</td>
-<td align="center">分配UUID,主键类型为String(since 3.3.0),使用接口<code>IdentifierGenerator</code>的方法<code>nextUUID</code>(默认default方法)</td>
-</tr>
-<tr>
-<td align="center"><del>ID_WORKER</del></td>
-<td align="center">分布式全局唯一ID 长整型类型(please use <code>ASSIGN_ID</code>)</td>
-</tr>
-<tr>
-<td align="center"><del>UUID</del></td>
-<td align="center">32位UUID字符串(please use <code>ASSIGN_UUID</code>)</td>
-</tr>
-<tr>
-<td align="center"><del>ID_WORKER_STR</del></td>
-<td align="center">分布式全局唯一ID 字符串类型(please use <code>ASSIGN_ID</code>)</td>
-</tr>
-</tbody></table>
-<ol start="3">
-<li><p>将新加的UUID做主键的表实体对象中ID设置为ASSIGN_UUID即可：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;</span></span><br><span class="line"><span class="comment"> * 用户表设置</span></span><br><span class="line"><span class="comment"> * &lt;/p&gt;</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> zhangchao</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@since</span> 2020-03-02</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="meta">@TableName</span>(<span class="string">"Gy_User"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GyUser</span> <span class="keyword">implements</span> <span class="title">Serializable</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> serialVersionUID = <span class="number">1L</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 唯一标识ID</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@TableId</span>(value = <span class="string">"UUID"</span>,type = IdType.ASSIGN_UUID)</span><br><span class="line">    <span class="keyword">private</span> String uuid;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 用户编码</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@TableField</span>(<span class="string">"UserCode"</span>)</span><br><span class="line">    <span class="keyword">private</span> String UserCode;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>另外，还可以自定义ID生成器</p>
-<p><img src="https://gitee.com/smiletou/img4md/raw/master/images/20200303134000811.png" alt="20200303134000811"></p>
-<p><img src="https://gitee.com/smiletou/img4md/raw/master/images/20200303134020685.png" alt="20200303134020685"></p>
-</li>
-</ol>
-<p><img src="https://gitee.com/smiletou/img4md/raw/master/images/20200303134043174.png" alt="20200303134043174"></p>
+<h3 id="二、创建登录失败处理器，并重写onAuthenticationFailure方法"><a href="#二、创建登录失败处理器，并重写onAuthenticationFailure方法" class="headerlink" title="二、创建登录失败处理器，并重写onAuthenticationFailure方法"></a>二、创建登录失败处理器，并重写onAuthenticationFailure方法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Slf</span>4j</span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LoginFailureHandler</span> <span class="keyword">extends</span> <span class="title">SimpleUrlAuthenticationFailureHandler</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onAuthenticationFailure</span><span class="params">(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception)</span> <span class="keyword">throws</span> IOException, ServletException </span>&#123;</span><br><span class="line">        <span class="comment">/* 默认：执行重定向或转发到defaultfailureurl(如果设置)，Otherw返回401错误代码 */</span></span><br><span class="line">        <span class="comment">//super.onAuthenticationFailure(request,response,exception)</span></span><br><span class="line">        log.error(<span class="string">"登录错误 [&#123;&#125;] "</span>,exception.getMessage());</span><br><span class="line">        response.setStatus(HttpServletResponse.SC_BAD_REQUEST);</span><br><span class="line">        response.setContentType(MediaType.APPLICATION_JSON_UTF8_VALUE);</span><br><span class="line">        PrintWriter writer = response.getWriter();</span><br><span class="line">        writer.write(exception.getMessage());</span><br><span class="line">        writer.flush();</span><br><span class="line">        writer.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>AuthenticationFailureHandler接口定义了Spring Security Web在遇到认证错误时所使用的处理策略。</p>
+<p>典型做法一般是将用户重定向到认证页面(比如认证机制是用户名表单认证的情况)让用户再次认证。当然具体实现类可以根据需求实现更复杂的逻辑，比如根据异常做不同的处理等等。举个例子，如果遇到CredentialsExpiredException异常(AuthenticationException异常的一种，表示密码过期失效)，可以将用户重定向到修改密码页面而不是登录认证页面。</p>
+<p>在Spring Security Web框架内部，<strong>缺省使用的认证错误处理策略是AuthenticationFailureHandler的实现类SimpleUrlAuthenticationFailureHandler</strong>。它由配置指定一个defaultFailureUrl,表示认证失败时缺省使用的重定向地址。一旦认证失败，它的方法onAuthenticationFailure被调用时，它就会将用户重定向到该地址。如果该属性没有设置，它会向客户端返回一个401状态码。另外<strong>SimpleUrlAuthenticationFailureHandler</strong>还有一个属性useForward,如果该属性设置为true,页面跳转将不再是重定向(redirect)机制，取而代之的是转发(forward)机制。</p>
+<h3 id="三、把自定义处理器加入security认证中"><a href="#三、把自定义处理器加入security认证中" class="headerlink" title="三、把自定义处理器加入security认证中"></a>三、把自定义处理器加入security认证中</h3><p>在SecurityConfig配置类的configure(HttpSecurity http)方法中加入我们自定义的处理Handler</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">configure</span><span class="params">(HttpSecurity http)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">    http.authorizeRequests() <span class="comment">//需要授权的请求</span></span><br><span class="line">        .antMatchers(<span class="string">"/login"</span>,<span class="string">"/home"</span>).permitAll() <span class="comment">//过滤不需要认证的路径</span></span><br><span class="line">        .anyRequest().authenticated() <span class="comment">//对任何一个请求，都需要认证</span></span><br><span class="line">        .and() <span class="comment">//完成上一个配置，进行下一步配置</span></span><br><span class="line">        <span class="comment">//.httpBasic();</span></span><br><span class="line">        .formLogin() <span class="comment">//配置表单登录</span></span><br><span class="line">        .loginPage(<span class="string">"/login"</span>) <span class="comment">//设置登录页面</span></span><br><span class="line">        .successHandler(successHandler)  <span class="comment">/* 设置成功处理器 */</span></span><br><span class="line">        .failureHandler(failureHandler)  <span class="comment">/* 设置失败处理器*/</span></span><br><span class="line">        .and()</span><br><span class="line">        .logout() <span class="comment">//登出</span></span><br><span class="line">        .logoutSuccessUrl(<span class="string">"/home"</span>); <span class="comment">//设置退出页面</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="四、启动项目测试"><a href="#四、启动项目测试" class="headerlink" title="四、启动项目测试"></a>四、启动项目测试</h3><p><img src="https://gitee.com/smiletou/img4md/raw/master/images/66666666.png" alt="66666666"></p>
+<p><img src="https://gitee.com/smiletou/img4md/raw/master/images/66666666.png" alt="7777778"></p>
 
       
       <!-- reward -->
@@ -267,14 +197,14 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://yak33.github.io/2020/ck7pleagu00061ojkfzz31du7/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://yak33.github.io/2020/ck7pllr0n000cwsjkf9km3w9r/" alt="微信分享二维码">
     </div>
 </div>
 
 <div id="share-mask"></div>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mybatis-Plus/" rel="tag">Mybatis Plus</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%A4%A7%E5%90%8E%E7%AB%AF/" rel="tag">大后端</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%8A%80%E6%9C%AF/" rel="tag">技术</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring-Boot/" rel="tag">Spring Boot</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring-Security/" rel="tag">Spring Security</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%A4%A7%E5%90%8E%E7%AB%AF/" rel="tag">大后端</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%8A%80%E6%9C%AF/" rel="tag">技术</a></li></ul>
 
 
     </footer>
@@ -285,19 +215,10 @@
   
   <nav class="article-nav">
     
-      <a href="/2020/ck7pleah4000g1ojkgn9z038h/" class="article-nav-link">
-        <strong class="article-nav-caption">上一篇</strong>
-        <div class="article-nav-title">
-          
-            SpringBoot完美整合RabbitMq（一）通过docker安装rabbitMq
-          
-        </div>
-      </a>
     
-    
-      <a href="/2020/ck7pleahi000x1ojkasl2dvlu/" class="article-nav-link">
+      <a href="/2020/ck7pllr0i0008wsjkcqgnd4qp/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">macOS下妙用option按键</div>
+        <div class="article-nav-title">SpringBoot 2整合SpringSecurity权限管理（一）SpringSecurity介绍及简单搭建</div>
       </a>
     
   </nav>
